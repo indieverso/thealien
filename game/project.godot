@@ -16,6 +16,7 @@ _global_script_class_icons={
 [application]
 
 config/name="The Alien - Game"
+run/main_scene="res://src/Scenes/Login.tscn"
 config/icon="res://icon.png"
 
 [autoload]

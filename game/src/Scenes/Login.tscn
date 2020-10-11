@@ -120,3 +120,4 @@ __meta__ = {
 [connection signal="text_changed" from="MarginContainer/VBoxContainer/LoginScreen/UsernameInput" to="." method="_on_input_text_changed"]
 [connection signal="text_changed" from="MarginContainer/VBoxContainer/LoginScreen/PasswordInput" to="." method="_on_input_text_changed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/LoginScreen/LoginButton" to="." method="_on_LoginButton_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/LoginScreen/QuitButton" to="." method="_on_QuitButton_pressed"]

@@ -38,7 +38,8 @@ func _physics_process(delta: float) -> void:
 		MOVE:
 			move_state(delta)
 	
-	velocity = move_and_slide(velocity)
+	if is_network_master():
+		velocity = move_and_slide(velocity)
 
 
 func idle_state(delta: float) -> void:

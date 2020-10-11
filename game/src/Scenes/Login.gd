@@ -12,6 +12,14 @@ func _ready() -> void:
 	GatewayServer.connect("authenticating", self, "_on_authenticating")
 
 
+# Controls login button state based on username and password content
+func _on_input_text_changed(new_text: String) -> void:
+	if username_input.text != "" and password_input.text != "":
+		login_button.disabled = false
+		return
+	login_button.disabled = true
+
+
 func _on_LoginButton_pressed() -> void:
 	var username = username_input.text
 	var password = password_input.text
@@ -41,8 +49,5 @@ func _on_authenticating() -> void:
 	print_debug("Authenticating.")
 
 
-func _on_input_text_changed(new_text: String) -> void:
-	if username_input.text != "" and password_input.text != "":
-		login_button.disabled = false
-		return
-	login_button.disabled = true
+func _on_QuitButton_pressed() -> void:
+	get_tree().quit()

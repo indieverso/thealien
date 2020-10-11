@@ -22,7 +22,7 @@ texture = ExtResource( 2 )
 position = Vector2( 0, 30 )
 shape = SubResource( 1 )
 
-[node name="ActionArea" parent="." index="2"]
+[node name="ActionArea" parent="." index="4"]
 input_pickable = false
 
 [node name="CollisionShape2D" parent="ActionArea" index="0"]

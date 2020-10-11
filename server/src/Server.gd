@@ -26,3 +26,15 @@ func _on_peer_connected(player_id: int) -> void:
 
 func _on_peer_disconnected(player_id: int) -> void:
 	print("Player " + str(player_id) + " disconnected.")
+
+
+func register_player(player_id: int) -> void:
+	var player : Node = Node.new()
+	player.name = str(player_id)
+	add_child(player)
+
+
+func unregister_player(player_id: int) -> void:
+	var player : Node = get_node(str(player_id))
+	if player:
+		player.queue_free()
