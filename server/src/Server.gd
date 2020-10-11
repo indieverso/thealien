@@ -25,10 +25,12 @@ func start_server() -> void:
 
 func _on_peer_connected(player_id: int) -> void:
 	print("Player " + str(player_id) + " connected.")
+	register_player(player_id)
 
 
 func _on_peer_disconnected(player_id: int) -> void:
 	print("Player " + str(player_id) + " disconnected.")
+	unregister_player(player_id)
 
 
 func register_player(player_id: int) -> void:
@@ -38,21 +40,33 @@ func register_player(player_id: int) -> void:
 
 
 func unregister_player(player_id: int) -> void:
-	var player : Node = lobby.get_node(str(player_id))
+	var player : = lobby.get_node(str(player_id))
 	if player:
 		player.queue_free()
 
 
-remote func create_game(name: String) -> void:
-	print("Creating game " + name)
+remote func create_game(game_name: String) -> void:
+	print("Creating game " + game_name)
 	var player_id : = get_tree().get_rpc_sender_id()
 	
 	var game : = preload("res://src/Game/Game.tscn").instance()
-	game.name = name
+	game.name = game_name
 	game.init(player_id)
 	games.add_child(game)
 	
-	rpc_id(player_id, "create_game_response", true)
+	var response = ""
+		
+	var player = lobby.get_node(str(player_id))
+	if player:
+		lobby.remove_child(player)
+		game.add_child(player)
+		response = {
+			"name": game.name, 
+			"players": game.get_child_count(), 
+			"max_players": 10, 
+			"mode": "default"}
+	
+	rpc_id(player_id, "create_game_response", response)
 
 
 remote func list_games() -> void:

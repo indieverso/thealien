@@ -2,9 +2,8 @@ extends Node
 
 
 var network : NetworkedMultiplayerENet = NetworkedMultiplayerENet.new()
-var my_info : = {
-	"username": "Player"
-}
+var my_info : = {"username": "Player"}
+var my_game
 
 export var gameserver_ip : String = "localhost"
 export var gameserver_port : int = 1909
@@ -41,6 +40,7 @@ remote func create_game_response(response) -> void:
 	if not response:
 		print_debug("Failed to create the game")
 		return
+	my_game = response
 	get_tree().change_scene("res://src/Scenes/Game.tscn")
 
 

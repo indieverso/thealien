@@ -2,15 +2,15 @@ extends Node
 
 
 func _ready() -> void:
-	get_tree().connect("network_peer_connected", self, "_on_peer_connected")
-	get_tree().connect("network_peer_disconnected", self, "_on_peer_disconnected")
+	GameServer.network.connect("peer_connected", self, "_on_peer_connected")
+	GameServer.network.connect("peer_disconnected", self, "_on_peer_disconnected")
 
 
 func spawn_player(player_id: int) -> void:
-	var player : = preload("res://src/Actors/Player.tscn").instance()
+	var player : KinematicBody2D = preload("res://src/Actors/Player.tscn").instance()
 	player.name = str(player_id)
 	player.set_network_master(player_id)
-	player.global_transform = player.global_transform
+	#player.position = Vector2.ZERO
 	$World.add_child(player)
 
 
