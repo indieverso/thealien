@@ -22,8 +22,6 @@ func connect_to_server() -> void:
 
 func _on_peer_connected(player_id: int) -> void:
 	print_debug("Player " + str(player_id) + " connected.")
-	# FIXME I do have a bug here. The player_id is not the correct one
-	my_info.id = player_id
 	# TODO Dispatch an event instead using the code down bellow
 	get_tree().change_scene("res://src/Scenes/Main.tscn")
 
