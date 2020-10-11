@@ -45,7 +45,22 @@ func unregister_player(player_id: int) -> void:
 
 remote func create_game(name: String) -> void:
 	print("Creating game " + name)
+	var player_id : = get_tree().get_rpc_sender_id()
+	
 	var game : = preload("res://src/Game/Game.tscn").instance()
 	game.name = name
-	game.init()
+	game.init(player_id)
 	games.add_child(game)
+	
+	rpc_id(player_id, "create_game_response", true)
+
+
+remote func list_games() -> void:
+	print("Listing games")
+	var player_id : = get_tree().get_rpc_sender_id()
+	
+	var game_list = []
+	for game in games.get_children():
+		game_list.append({"name": game.name, "players": 1, "max_players": 10, "mode": "default"})
+	
+	rpc_id(player_id, "list_games_response", game_list)

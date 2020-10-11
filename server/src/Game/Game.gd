@@ -1,5 +1,8 @@
 extends Node
 
 
-func init() -> void:
-	pass
+var _game_owner : int
+
+
+func init(game_owner: int) -> void:
+	_game_owner = game_owner
