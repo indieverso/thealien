@@ -1,0 +1,122 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://src/UI/GameLogo.tscn" type="PackedScene" id=1]
+[ext_resource path="res://src/Scenes/Login.gd" type="Script" id=2]
+
+[node name="LoginScreen" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Button" type="Button" parent="."]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -51.0
+margin_bottom = 20.0
+grow_horizontal = 0
+text = "Settings"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -560.0
+margin_top = -240.0
+margin_right = 560.0
+margin_bottom = 240.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+margin_right = 1120.0
+margin_bottom = 480.0
+
+[node name="GameName" parent="MarginContainer/VBoxContainer" instance=ExtResource( 1 )]
+
+[node name="Separator" type="MarginContainer" parent="MarginContainer/VBoxContainer"]
+margin_top = 87.0
+margin_right = 1120.0
+margin_bottom = 167.0
+rect_min_size = Vector2( 0, 80 )
+
+[node name="LoginScreen" type="GridContainer" parent="MarginContainer/VBoxContainer"]
+margin_left = 460.0
+margin_top = 171.0
+margin_right = 660.0
+margin_bottom = 420.0
+grow_horizontal = 2
+size_flags_horizontal = 4
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="UsernameInput" type="LineEdit" parent="MarginContainer/VBoxContainer/LoginScreen"]
+margin_right = 200.0
+margin_bottom = 25.0
+rect_min_size = Vector2( 200, 25 )
+align = 1
+placeholder_text = "Username"
+
+[node name="PasswordInput" type="LineEdit" parent="MarginContainer/VBoxContainer/LoginScreen"]
+margin_top = 29.0
+margin_right = 200.0
+margin_bottom = 54.0
+rect_min_size = Vector2( 0, 25 )
+align = 1
+secret = true
+placeholder_text = "Password"
+
+[node name="Separator2" type="MarginContainer" parent="MarginContainer/VBoxContainer/LoginScreen"]
+margin_top = 58.0
+margin_right = 200.0
+margin_bottom = 78.0
+rect_min_size = Vector2( 0, 20 )
+
+[node name="LoginButton" type="Button" parent="MarginContainer/VBoxContainer/LoginScreen"]
+margin_top = 82.0
+margin_right = 200.0
+margin_bottom = 107.0
+rect_min_size = Vector2( 0, 25 )
+disabled = true
+text = "Login"
+
+[node name="CreateAccountButton" type="Button" parent="MarginContainer/VBoxContainer/LoginScreen"]
+margin_top = 111.0
+margin_right = 200.0
+margin_bottom = 136.0
+rect_min_size = Vector2( 0, 25 )
+text = "Create account"
+
+[node name="Separator3" type="MarginContainer" parent="MarginContainer/VBoxContainer/LoginScreen"]
+margin_top = 140.0
+margin_right = 200.0
+margin_bottom = 220.0
+rect_min_size = Vector2( 0, 80 )
+
+[node name="QuitButton" type="Button" parent="MarginContainer/VBoxContainer/LoginScreen"]
+margin_top = 224.0
+margin_right = 200.0
+margin_bottom = 249.0
+rect_min_size = Vector2( 0, 25 )
+text = "Quit"
+
+[node name="Version" type="Label" parent="."]
+anchor_top = 1.0
+anchor_bottom = 1.0
+margin_top = -14.0
+margin_right = 90.0
+text = "v.0.0.0-alpha0"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+[connection signal="text_changed" from="MarginContainer/VBoxContainer/LoginScreen/UsernameInput" to="." method="_on_input_text_changed"]
+[connection signal="text_changed" from="MarginContainer/VBoxContainer/LoginScreen/PasswordInput" to="." method="_on_input_text_changed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/LoginScreen/LoginButton" to="." method="_on_LoginButton_pressed"]

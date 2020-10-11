@@ -1,0 +1,562 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://assets/fonts/Alien_lines_1.9.ttf" type="DynamicFontData" id=1]
+[ext_resource path="res://assets/fonts/AlteHaasGroteskRegular.ttf" type="DynamicFontData" id=2]
+
+[sub_resource type="DynamicFont" id=1]
+size = 60
+use_filter = true
+font_data = ExtResource( 1 )
+
+[sub_resource type="DynamicFont" id=2]
+size = 20
+use_filter = true
+font_data = ExtResource( 2 )
+
+[node name="FindGameScreen" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MainContainer" type="MarginContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 20.0
+margin_top = 20.0
+margin_right = -20.0
+margin_bottom = -20.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MainContainer"]
+margin_right = 1240.0
+margin_bottom = 680.0
+
+[node name="GameName" type="Label" parent="MainContainer/VBoxContainer"]
+margin_right = 1240.0
+margin_bottom = 62.0
+custom_fonts/font = SubResource( 1 )
+text = "THE ALIEN"
+
+[node name="Separator" type="MarginContainer" parent="MainContainer/VBoxContainer"]
+margin_top = 66.0
+margin_right = 1240.0
+margin_bottom = 106.0
+rect_min_size = Vector2( 0, 40 )
+
+[node name="Toolbar" type="HBoxContainer" parent="MainContainer/VBoxContainer"]
+margin_top = 110.0
+margin_right = 1240.0
+margin_bottom = 150.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+alignment = 2
+
+[node name="Title" type="Label" parent="MainContainer/VBoxContainer/Toolbar"]
+margin_top = 7.0
+margin_right = 992.0
+margin_bottom = 32.0
+size_flags_horizontal = 3
+custom_fonts/font = SubResource( 2 )
+text = "FIND GAMES"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MainContainer/VBoxContainer/Toolbar"]
+margin_left = 996.0
+margin_right = 1240.0
+margin_bottom = 40.0
+alignment = 2
+
+[node name="Button" type="Button" parent="MainContainer/VBoxContainer/Toolbar/HBoxContainer"]
+margin_right = 120.0
+margin_bottom = 40.0
+rect_min_size = Vector2( 120, 40 )
+text = "Create Game"
+
+[node name="Button2" type="Button" parent="MainContainer/VBoxContainer/Toolbar/HBoxContainer"]
+margin_left = 124.0
+margin_right = 244.0
+margin_bottom = 40.0
+rect_min_size = Vector2( 120, 40 )
+text = "Refresh"
+
+[node name="Separator2" type="MarginContainer" parent="MainContainer/VBoxContainer"]
+margin_top = 154.0
+margin_right = 1240.0
+margin_bottom = 194.0
+rect_min_size = Vector2( 0, 40 )
+
+[node name="ServerList" type="VBoxContainer" parent="MainContainer/VBoxContainer"]
+margin_top = 198.0
+margin_right = 1240.0
+margin_bottom = 569.0
+size_flags_horizontal = 3
+
+[node name="ServerListHeader" type="HBoxContainer" parent="MainContainer/VBoxContainer/ServerList"]
+margin_right = 1240.0
+margin_bottom = 20.0
+rect_min_size = Vector2( 0, 20 )
+alignment = 1
+
+[node name="ServerName" type="Label" parent="MainContainer/VBoxContainer/ServerList/ServerListHeader"]
+margin_top = 3.0
+margin_right = 359.0
+margin_bottom = 17.0
+size_flags_horizontal = 3
+text = "Server"
+
+[node name="NumPlayers" type="Label" parent="MainContainer/VBoxContainer/ServerList/ServerListHeader"]
+margin_left = 363.0
+margin_top = 3.0
+margin_right = 722.0
+margin_bottom = 17.0
+size_flags_horizontal = 3
+text = "Players"
+
+[node name="GameMode" type="Label" parent="MainContainer/VBoxContainer/ServerList/ServerListHeader"]
+margin_left = 726.0
+margin_top = 3.0
+margin_right = 1086.0
+margin_bottom = 17.0
+size_flags_horizontal = 3
+text = "Mode"
+
+[node name="Action" type="Label" parent="MainContainer/VBoxContainer/ServerList/ServerListHeader"]
+margin_left = 1090.0
+margin_top = 3.0
+margin_right = 1240.0
+margin_bottom = 17.0
+rect_min_size = Vector2( 150, 0 )
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MainContainer/VBoxContainer/ServerList"]
+margin_top = 24.0
+margin_right = 1240.0
+margin_bottom = 371.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MainContainer/VBoxContainer/ServerList/HBoxContainer"]
+margin_right = 1224.0
+margin_bottom = 347.0
+rect_clip_content = true
+size_flags_horizontal = 3
+size_flags_vertical = 0
+
+[node name="SeverListItem2" type="HBoxContainer" parent="MainContainer/VBoxContainer/ServerList/HBoxContainer/VBoxContainer"]
+margin_right = 1224.0
+margin_bottom = 35.0
+rect_min_size = Vector2( 0, 35 )
+alignment = 1
+
+[node name="ServerName" type="Label" parent="MainContainer/VBoxContainer/ServerList/HBoxContainer/VBoxContainer/SeverListItem2"]
+margin_top = 10.0
+margin_right = 354.0
+margin_bottom = 24.0
+size_flags_horizontal = 3
+text = "My First and nice server"
+
+[node name="NumPlayers" type="Label" parent="MainContainer/VBoxContainer/ServerList/HBoxContainer/VBoxContainer/SeverListItem2"]
+margin_left = 358.0
+margin_top = 10.0
+margin_right = 712.0
+margin_bottom = 24.0
+size_flags_horizontal = 3
+text = "12/30"
+
+[node name="GameMode" type="Label" parent="MainContainer/VBoxContainer/ServerList/HBoxContainer/VBoxContainer/SeverListItem2"]
+margin_left = 716.0
+margin_top = 10.0
+margin_right = 1070.0
+margin_bottom = 24.0
+size_flags_horizontal = 3
+text = "Find the Alien"
+
+[node name="ServerActions" type="HBoxContainer" parent="MainContainer/VBoxContainer/ServerList/HBoxContainer/VBoxContainer/SeverListItem2"]
+margin_left = 1074.0
+margin_right = 1224.0
+margin_bottom = 35.0
+rect_min_size = Vector2( 150, 0 )
+alignment = 1
+
+[node name="JoinGameButton" type="Button" parent="MainContainer/VBoxContainer/ServerList/HBoxContainer/VBoxContainer/SeverListItem2/ServerActions"]
+margin_left = 38.0
+margin_top = 7.0
+margin_right = 112.0
+margin_bottom = 27.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+text = "Join game"
+
+[node name="SeverListItem3" type="HBoxContainer" parent="MainContainer/VBoxContainer/ServerList/HBoxContainer/VBoxContainer"]
+margin_top = 39.0
+margin_right = 1224.0
+margin_bottom = 74.0
+rect_min_size = Vector2( 0, 35 )
+alignment = 1
+
+[node name="ServerName" type="Label" parent="MainContainer/VBoxContainer/ServerList/HBoxContainer/VBoxContainer/SeverListItem3"]
+margin_top = 10.0
+margin_right = 354.0
+margin_bottom = 24.0
+size_flags_horizontal = 3
+text = "My First and nice server"
+
+[node name="NumPlayers" type="Label" parent="MainContainer/VBoxContainer/ServerList/HBoxContainer/VBoxContainer/SeverListItem3"]
+margin_left = 358.0
+margin_top = 10.0
+margin_right = 712.0
+margin_bottom = 24.0
+size_flags_horizontal = 3
+text = "12/30"
+
+[node name="GameMode" type="Label" parent="MainContainer/VBoxContainer/ServerList/HBoxContainer/VBoxContainer/SeverListItem3"]
+margin_left = 716.0
+margin_top = 10.0
+margin_right = 1070.0
+margin_bottom = 24.0
+size_flags_horizontal = 3
+text = "Find the Alien"
+
+[node name="ServerActions" type="HBoxContainer" parent="MainContainer/VBoxContainer/ServerList/HBoxContainer/VBoxContainer/SeverListItem3"]
+margin_left = 1074.0
+margin_right = 1224.0
+margin_bottom = 35.0
+rect_min_size = Vector2( 150, 0 )
+alignment = 1
+
+[node name="JoinGameButton" type="Button" parent="MainContainer/VBoxContainer/ServerList/HBoxContainer/VBoxContainer/SeverListItem3/ServerActions"]
+margin_left = 38.0
+margin_top = 7.0
+margin_right = 112.0
+margin_bottom = 27.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+text = "Join game"
+
+[node name="SeverListItem4" type="HBoxContainer" parent="MainContainer/VBoxContainer/ServerList/HBoxContainer/VBoxContainer"]
+margin_top = 78.0
+margin_right = 1224.0
+margin_bottom = 113.0
+rect_min_size = Vector2( 0, 35 )
+alignment = 1
+
+[node name="ServerName" type="Label" parent="MainContainer/VBoxContainer/ServerList/HBoxContainer/VBoxContainer/SeverListItem4"]
+margin_top = 10.0
+margin_right = 354.0
+margin_bottom = 24.0
+size_flags_horizontal = 3
+text = "My First and nice server"
+
+[node name="NumPlayers" type="Label" parent="MainContainer/VBoxContainer/ServerList/HBoxContainer/VBoxContainer/SeverListItem4"]
+margin_left = 358.0
+margin_top = 10.0
+margin_right = 712.0
+margin_bottom = 24.0
+size_flags_horizontal = 3
+text = "12/30"
+
+[node name="GameMode" type="Label" parent="MainContainer/VBoxContainer/ServerList/HBoxContainer/VBoxContainer/SeverListItem4"]
+margin_left = 716.0
+margin_top = 10.0
+margin_right = 1070.0
+margin_bottom = 24.0
+size_flags_horizontal = 3
+text = "Find the Alien"
+
+[node name="ServerActions" type="HBoxContainer" parent="MainContainer/VBoxContainer/ServerList/HBoxContainer/VBoxContainer/SeverListItem4"]
+margin_left = 1074.0
+margin_right = 1224.0
+margin_bottom = 35.0
+rect_min_size = Vector2( 150, 0 )
+alignment = 1
+
+[node name="JoinGameButton" type="Button" parent="MainContainer/VBoxContainer/ServerList/HBoxContainer/VBoxContainer/SeverListItem4/ServerActions"]
+margin_left = 38.0
+margin_top = 7.0
+margin_right = 112.0
+margin_bottom = 27.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+text = "Join game"
+
+[node name="SeverListItem5" type="HBoxContainer" parent="MainContainer/VBoxContainer/ServerList/HBoxContainer/VBoxContainer"]
+margin_top = 117.0
+margin_right = 1224.0
+margin_bottom = 152.0
+rect_min_size = Vector2( 0, 35 )
+alignment = 1
+
+[node name="ServerName" type="Label" parent="MainContainer/VBoxContainer/ServerList/HBoxContainer/VBoxContainer/SeverListItem5"]
+margin_top = 10.0
+margin_right = 354.0
+margin_bottom = 24.0
+size_flags_horizontal = 3
+text = "My First and nice server"
+
+[node name="NumPlayers" type="Label" parent="MainContainer/VBoxContainer/ServerList/HBoxContainer/VBoxContainer/SeverListItem5"]
+margin_left = 358.0
+margin_top = 10.0
+margin_right = 712.0
+margin_bottom = 24.0
+size_flags_horizontal = 3
+text = "12/30"
+
+[node name="GameMode" type="Label" parent="MainContainer/VBoxContainer/ServerList/HBoxContainer/VBoxContainer/SeverListItem5"]
+margin_left = 716.0
+margin_top = 10.0
+margin_right = 1070.0
+margin_bottom = 24.0
+size_flags_horizontal = 3
+text = "Find the Alien"
+
+[node name="ServerActions" type="HBoxContainer" parent="MainContainer/VBoxContainer/ServerList/HBoxContainer/VBoxContainer/SeverListItem5"]
+margin_left = 1074.0
+margin_right = 1224.0
+margin_bottom = 35.0
+rect_min_size = Vector2( 150, 0 )
+alignment = 1
+
+[node name="JoinGameButton" type="Button" parent="MainContainer/VBoxContainer/ServerList/HBoxContainer/VBoxContainer/SeverListItem5/ServerActions"]
+margin_left = 38.0
+margin_top = 7.0
+margin_right = 112.0
+margin_bottom = 27.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+text = "Join game"
+
+[node name="SeverListItem6" type="HBoxContainer" parent="MainContainer/VBoxContainer/ServerList/HBoxContainer/VBoxContainer"]
+margin_top = 156.0
+margin_right = 1224.0
+margin_bottom = 191.0
+rect_min_size = Vector2( 0, 35 )
+alignment = 1
+
+[node name="ServerName" type="Label" parent="MainContainer/VBoxContainer/ServerList/HBoxContainer/VBoxContainer/SeverListItem6"]
+margin_top = 10.0
+margin_right = 354.0
+margin_bottom = 24.0
+size_flags_horizontal = 3
+text = "My First and nice server"
+
+[node name="NumPlayers" type="Label" parent="MainContainer/VBoxContainer/ServerList/HBoxContainer/VBoxContainer/SeverListItem6"]
+margin_left = 358.0
+margin_top = 10.0
+margin_right = 712.0
+margin_bottom = 24.0
+size_flags_horizontal = 3
+text = "12/30"
+
+[node name="GameMode" type="Label" parent="MainContainer/VBoxContainer/ServerList/HBoxContainer/VBoxContainer/SeverListItem6"]
+margin_left = 716.0
+margin_top = 10.0
+margin_right = 1070.0
+margin_bottom = 24.0
+size_flags_horizontal = 3
+text = "Find the Alien"
+
+[node name="ServerActions" type="HBoxContainer" parent="MainContainer/VBoxContainer/ServerList/HBoxContainer/VBoxContainer/SeverListItem6"]
+margin_left = 1074.0
+margin_right = 1224.0
+margin_bottom = 35.0
+rect_min_size = Vector2( 150, 0 )
+alignment = 1
+
+[node name="JoinGameButton" type="Button" parent="MainContainer/VBoxContainer/ServerList/HBoxContainer/VBoxContainer/SeverListItem6/ServerActions"]
+margin_left = 38.0
+margin_top = 7.0
+margin_right = 112.0
+margin_bottom = 27.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+text = "Join game"
+
+[node name="SeverListItem7" type="HBoxContainer" parent="MainContainer/VBoxContainer/ServerList/HBoxContainer/VBoxContainer"]
+margin_top = 195.0
+margin_right = 1224.0
+margin_bottom = 230.0
+rect_min_size = Vector2( 0, 35 )
+alignment = 1
+
+[node name="ServerName" type="Label" parent="MainContainer/VBoxContainer/ServerList/HBoxContainer/VBoxContainer/SeverListItem7"]
+margin_top = 10.0
+margin_right = 354.0
+margin_bottom = 24.0
+size_flags_horizontal = 3
+text = "My First and nice server"
+
+[node name="NumPlayers" type="Label" parent="MainContainer/VBoxContainer/ServerList/HBoxContainer/VBoxContainer/SeverListItem7"]
+margin_left = 358.0
+margin_top = 10.0
+margin_right = 712.0
+margin_bottom = 24.0
+size_flags_horizontal = 3
+text = "12/30"
+
+[node name="GameMode" type="Label" parent="MainContainer/VBoxContainer/ServerList/HBoxContainer/VBoxContainer/SeverListItem7"]
+margin_left = 716.0
+margin_top = 10.0
+margin_right = 1070.0
+margin_bottom = 24.0
+size_flags_horizontal = 3
+text = "Find the Alien"
+
+[node name="ServerActions" type="HBoxContainer" parent="MainContainer/VBoxContainer/ServerList/HBoxContainer/VBoxContainer/SeverListItem7"]
+margin_left = 1074.0
+margin_right = 1224.0
+margin_bottom = 35.0
+rect_min_size = Vector2( 150, 0 )
+alignment = 1
+
+[node name="JoinGameButton" type="Button" parent="MainContainer/VBoxContainer/ServerList/HBoxContainer/VBoxContainer/SeverListItem7/ServerActions"]
+margin_left = 38.0
+margin_top = 7.0
+margin_right = 112.0
+margin_bottom = 27.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+text = "Join game"
+
+[node name="SeverListItem8" type="HBoxContainer" parent="MainContainer/VBoxContainer/ServerList/HBoxContainer/VBoxContainer"]
+margin_top = 234.0
+margin_right = 1224.0
+margin_bottom = 269.0
+rect_min_size = Vector2( 0, 35 )
+alignment = 1
+
+[node name="ServerName" type="Label" parent="MainContainer/VBoxContainer/ServerList/HBoxContainer/VBoxContainer/SeverListItem8"]
+margin_top = 10.0
+margin_right = 354.0
+margin_bottom = 24.0
+size_flags_horizontal = 3
+text = "My First and nice server"
+
+[node name="NumPlayers" type="Label" parent="MainContainer/VBoxContainer/ServerList/HBoxContainer/VBoxContainer/SeverListItem8"]
+margin_left = 358.0
+margin_top = 10.0
+margin_right = 712.0
+margin_bottom = 24.0
+size_flags_horizontal = 3
+text = "12/30"
+
+[node name="GameMode" type="Label" parent="MainContainer/VBoxContainer/ServerList/HBoxContainer/VBoxContainer/SeverListItem8"]
+margin_left = 716.0
+margin_top = 10.0
+margin_right = 1070.0
+margin_bottom = 24.0
+size_flags_horizontal = 3
+text = "Find the Alien"
+
+[node name="ServerActions" type="HBoxContainer" parent="MainContainer/VBoxContainer/ServerList/HBoxContainer/VBoxContainer/SeverListItem8"]
+margin_left = 1074.0
+margin_right = 1224.0
+margin_bottom = 35.0
+rect_min_size = Vector2( 150, 0 )
+alignment = 1
+
+[node name="JoinGameButton" type="Button" parent="MainContainer/VBoxContainer/ServerList/HBoxContainer/VBoxContainer/SeverListItem8/ServerActions"]
+margin_left = 38.0
+margin_top = 7.0
+margin_right = 112.0
+margin_bottom = 27.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+text = "Join game"
+
+[node name="SeverListItem9" type="HBoxContainer" parent="MainContainer/VBoxContainer/ServerList/HBoxContainer/VBoxContainer"]
+margin_top = 273.0
+margin_right = 1224.0
+margin_bottom = 308.0
+rect_min_size = Vector2( 0, 35 )
+alignment = 1
+
+[node name="ServerName" type="Label" parent="MainContainer/VBoxContainer/ServerList/HBoxContainer/VBoxContainer/SeverListItem9"]
+margin_top = 10.0
+margin_right = 354.0
+margin_bottom = 24.0
+size_flags_horizontal = 3
+text = "My First and nice server"
+
+[node name="NumPlayers" type="Label" parent="MainContainer/VBoxContainer/ServerList/HBoxContainer/VBoxContainer/SeverListItem9"]
+margin_left = 358.0
+margin_top = 10.0
+margin_right = 712.0
+margin_bottom = 24.0
+size_flags_horizontal = 3
+text = "12/30"
+
+[node name="GameMode" type="Label" parent="MainContainer/VBoxContainer/ServerList/HBoxContainer/VBoxContainer/SeverListItem9"]
+margin_left = 716.0
+margin_top = 10.0
+margin_right = 1070.0
+margin_bottom = 24.0
+size_flags_horizontal = 3
+text = "Find the Alien"
+
+[node name="ServerActions" type="HBoxContainer" parent="MainContainer/VBoxContainer/ServerList/HBoxContainer/VBoxContainer/SeverListItem9"]
+margin_left = 1074.0
+margin_right = 1224.0
+margin_bottom = 35.0
+rect_min_size = Vector2( 150, 0 )
+alignment = 1
+
+[node name="JoinGameButton" type="Button" parent="MainContainer/VBoxContainer/ServerList/HBoxContainer/VBoxContainer/SeverListItem9/ServerActions"]
+margin_left = 38.0
+margin_top = 7.0
+margin_right = 112.0
+margin_bottom = 27.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+text = "Join game"
+
+[node name="SeverListItem10" type="HBoxContainer" parent="MainContainer/VBoxContainer/ServerList/HBoxContainer/VBoxContainer"]
+margin_top = 312.0
+margin_right = 1224.0
+margin_bottom = 347.0
+rect_min_size = Vector2( 0, 35 )
+alignment = 1
+
+[node name="ServerName" type="Label" parent="MainContainer/VBoxContainer/ServerList/HBoxContainer/VBoxContainer/SeverListItem10"]
+margin_top = 10.0
+margin_right = 354.0
+margin_bottom = 24.0
+size_flags_horizontal = 3
+text = "My First and nice server"
+
+[node name="NumPlayers" type="Label" parent="MainContainer/VBoxContainer/ServerList/HBoxContainer/VBoxContainer/SeverListItem10"]
+margin_left = 358.0
+margin_top = 10.0
+margin_right = 712.0
+margin_bottom = 24.0
+size_flags_horizontal = 3
+text = "12/30"
+
+[node name="GameMode" type="Label" parent="MainContainer/VBoxContainer/ServerList/HBoxContainer/VBoxContainer/SeverListItem10"]
+margin_left = 716.0
+margin_top = 10.0
+margin_right = 1070.0
+margin_bottom = 24.0
+size_flags_horizontal = 3
+text = "Find the Alien"
+
+[node name="ServerActions" type="HBoxContainer" parent="MainContainer/VBoxContainer/ServerList/HBoxContainer/VBoxContainer/SeverListItem10"]
+margin_left = 1074.0
+margin_right = 1224.0
+margin_bottom = 35.0
+rect_min_size = Vector2( 150, 0 )
+alignment = 1
+
+[node name="JoinGameButton" type="Button" parent="MainContainer/VBoxContainer/ServerList/HBoxContainer/VBoxContainer/SeverListItem10/ServerActions"]
+margin_left = 38.0
+margin_top = 7.0
+margin_right = 112.0
+margin_bottom = 27.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+text = "Join game"
+
+[node name="VScrollBar" type="VScrollBar" parent="MainContainer/VBoxContainer/ServerList/HBoxContainer"]
+margin_left = 1228.0
+margin_right = 1240.0
+margin_bottom = 347.0
