@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://assets/fonts/Alien_lines_1.9.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://assets/fonts/AlteHaasGroteskRegular.ttf" type="DynamicFontData" id=2]
+[ext_resource path="res://src/Scenes/FindGame.gd" type="Script" id=3]
 
 [sub_resource type="DynamicFont" id=1]
 size = 60
@@ -16,6 +17,7 @@ font_data = ExtResource( 2 )
 [node name="FindGameScreen" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
+script = ExtResource( 3 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -58,27 +60,34 @@ alignment = 2
 
 [node name="Title" type="Label" parent="MainContainer/VBoxContainer/Toolbar"]
 margin_top = 7.0
-margin_right = 992.0
+margin_right = 868.0
 margin_bottom = 32.0
 size_flags_horizontal = 3
 custom_fonts/font = SubResource( 2 )
 text = "FIND GAMES"
 
 [node name="HBoxContainer" type="HBoxContainer" parent="MainContainer/VBoxContainer/Toolbar"]
-margin_left = 996.0
+margin_left = 872.0
 margin_right = 1240.0
 margin_bottom = 40.0
 alignment = 2
 
-[node name="Button" type="Button" parent="MainContainer/VBoxContainer/Toolbar/HBoxContainer"]
+[node name="BackButton" type="Button" parent="MainContainer/VBoxContainer/Toolbar/HBoxContainer"]
 margin_right = 120.0
+margin_bottom = 40.0
+rect_min_size = Vector2( 120, 40 )
+text = "Back"
+
+[node name="CreateGameButton" type="Button" parent="MainContainer/VBoxContainer/Toolbar/HBoxContainer"]
+margin_left = 124.0
+margin_right = 244.0
 margin_bottom = 40.0
 rect_min_size = Vector2( 120, 40 )
 text = "Create Game"
 
-[node name="Button2" type="Button" parent="MainContainer/VBoxContainer/Toolbar/HBoxContainer"]
-margin_left = 124.0
-margin_right = 244.0
+[node name="RefreshButton" type="Button" parent="MainContainer/VBoxContainer/Toolbar/HBoxContainer"]
+margin_left = 248.0
+margin_right = 368.0
 margin_bottom = 40.0
 rect_min_size = Vector2( 120, 40 )
 text = "Refresh"
@@ -560,3 +569,6 @@ text = "Join game"
 margin_left = 1228.0
 margin_right = 1240.0
 margin_bottom = 347.0
+[connection signal="pressed" from="MainContainer/VBoxContainer/Toolbar/HBoxContainer/BackButton" to="." method="_on_BackButton_pressed"]
+[connection signal="pressed" from="MainContainer/VBoxContainer/Toolbar/HBoxContainer/CreateGameButton" to="." method="_on_CreateGameButton_pressed"]
+[connection signal="pressed" from="MainContainer/VBoxContainer/Toolbar/HBoxContainer/RefreshButton" to="." method="_on_RefreshButton_pressed"]

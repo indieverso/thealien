@@ -46,7 +46,7 @@ func _on_login_succeeded() -> void:
 
 
 func _on_authenticating() -> void:
-	print_debug("Authenticating.")
+	print_debug("Authenticating")
 
 
 func _on_QuitButton_pressed() -> void:

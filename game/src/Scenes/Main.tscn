@@ -86,4 +86,6 @@ margin_right = 200.0
 margin_bottom = 196.0
 rect_min_size = Vector2( 200, 25 )
 text = "Quit"
+[connection signal="pressed" from="MarginContainer/VBoxContainer/GridContainer/CreateGameButton" to="." method="_on_CreateGameButton_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/GridContainer/FindGameButton" to="." method="_on_FindGameButton_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/GridContainer/QuitButton" to="." method="_on_QuitButton_pressed"]
