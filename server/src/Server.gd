@@ -5,6 +5,9 @@ var network : NetworkedMultiplayerENet = NetworkedMultiplayerENet.new()
 
 export var port : int = 1909
 
+onready var lobby : = $Lobby
+onready var games : = $Games
+
 
 func _ready() -> void:
 	start_server()
@@ -31,10 +34,18 @@ func _on_peer_disconnected(player_id: int) -> void:
 func register_player(player_id: int) -> void:
 	var player : Node = Node.new()
 	player.name = str(player_id)
-	add_child(player)
+	lobby.add_child(player)
 
 
 func unregister_player(player_id: int) -> void:
-	var player : Node = get_node(str(player_id))
+	var player : Node = lobby.get_node(str(player_id))
 	if player:
 		player.queue_free()
+
+
+remote func create_game(name: String) -> void:
+	print("Creating game " + name)
+	var game : = preload("res://src/Game/Game.tscn").instance()
+	game.name = name
+	game.init()
+	games.add_child(game)
