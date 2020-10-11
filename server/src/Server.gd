@@ -62,7 +62,7 @@ remote func create_game(game_name: String) -> void:
 		game.add_child(player)
 		response = {
 			"name": game.name, 
-			"players": game.get_child_count(), 
+			"num_players": game.get_child_count(), 
 			"max_players": 10, 
 			"mode": "default"}
 	
