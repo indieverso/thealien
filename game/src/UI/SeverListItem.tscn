@@ -1,0 +1,46 @@
+[gd_scene format=2]
+
+[node name="SeverListItem2" type="HBoxContainer"]
+margin_right = 1224.0
+margin_bottom = 35.0
+rect_min_size = Vector2( 0, 35 )
+alignment = 1
+
+[node name="ServerName" type="Label" parent="."]
+margin_top = 10.0
+margin_right = 354.0
+margin_bottom = 24.0
+size_flags_horizontal = 3
+text = "My First and nice server"
+
+[node name="NumPlayers" type="Label" parent="."]
+margin_left = 358.0
+margin_top = 10.0
+margin_right = 712.0
+margin_bottom = 24.0
+size_flags_horizontal = 3
+text = "12/30"
+
+[node name="GameMode" type="Label" parent="."]
+margin_left = 716.0
+margin_top = 10.0
+margin_right = 1070.0
+margin_bottom = 24.0
+size_flags_horizontal = 3
+text = "Find the Alien"
+
+[node name="ServerActions" type="HBoxContainer" parent="."]
+margin_left = 1074.0
+margin_right = 1224.0
+margin_bottom = 35.0
+rect_min_size = Vector2( 150, 0 )
+alignment = 1
+
+[node name="JoinGameButton" type="Button" parent="ServerActions"]
+margin_left = 38.0
+margin_top = 7.0
+margin_right = 112.0
+margin_bottom = 27.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+text = "Join game"

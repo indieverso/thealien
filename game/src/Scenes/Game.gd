@@ -2,15 +2,16 @@ extends Node
 
 
 func _ready() -> void:
-	get_tree().connect("network_peer_connected", self, "_on_peer_connected")
-	get_tree().connect("network_peer_disconnected", self, "_on_peer_disconnected")
+	spawn_player(get_tree().get_network_unique_id())
+	GameServer.network.connect("peer_connected", self, "_on_peer_connected")	
+	GameServer.network.connect("peer_disconnected", self, "_on_peer_disconnected")
 
 
 func spawn_player(player_id: int) -> void:
-	var player : = preload("res://src/Actors/Player.tscn").instance()
+	var player : KinematicBody2D = preload("res://src/Actors/Player.tscn").instance()
 	player.name = str(player_id)
 	player.set_network_master(player_id)
-	player.global_transform = player.global_transform
+	player.position = Vector2(650, 350)
 	$World.add_child(player)
 
 
@@ -20,7 +21,7 @@ func _on_peer_connected(player_id: int) -> void:
 
 
 func _on_peer_disconnected(player_id: int) -> void:
+	print_debug("Removing " + str(player_id))
 	var player : = get_node(str(player_id))	
 	if player:
-		print_debug("Removing " + str(player_id))
 		player.queue_free()

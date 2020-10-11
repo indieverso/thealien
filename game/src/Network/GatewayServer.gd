@@ -61,13 +61,13 @@ func authenticate() -> void:
 
 
 remote func authenticate_reponse(response) -> void:
-	print_debug("Recieving authentication response from Gateway")	
+	print_debug("Recieving authentication response from Gateway")
+	
+	network.disconnect("connection_succeeded", self, "_on_connection_succeeded")
+	network.disconnect("connection_failed", self, "_on_connection_failed")
 	
 	if response:
 		emit_signal("login_succeeded")
 		return
 		
 	emit_signal("login_failed")
-	
-	network.disconnect("connection_succeeded", self, "_on_connection_succeeded")
-	network.disconnect("connection_failed", self, "_on_connection_failed")

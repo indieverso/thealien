@@ -2,9 +2,13 @@ extends Node
 
 
 var network : NetworkedMultiplayerENet = NetworkedMultiplayerENet.new()
+var my_info : = {"username": "Player"}
+var my_game
 
 export var gameserver_ip : String = "localhost"
 export var gameserver_port : int = 1909
+
+signal game_list_updated
 
 
 func connect_to_server() -> void:
@@ -24,3 +28,24 @@ func _on_peer_connected(player_id: int) -> void:
 
 func _on_peer_disconnected(player_id: int) -> void:
 	print_debug("Player " + str(player_id) + " disconnected")
+
+
+func create_game(game_name: String) -> void:
+	print_debug("Creating a game room")
+	rpc_id(1, "create_game", game_name)
+
+
+remote func create_game_response(response) -> void:
+	if not response:
+		print_debug("Failed to create the game")
+		return
+	my_game = response
+	get_tree().change_scene("res://src/Scenes/Game.tscn")
+
+
+func list_games():
+	rpc_id(1, "list_games")
+
+
+remote func list_games_response(games):
+	emit_signal("game_list_updated", games)

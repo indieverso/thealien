@@ -102,7 +102,7 @@ margin_right = 1240.0
 margin_bottom = 140.0
 columns = 3
 
-[node name="ServerNameInput" type="LineEdit" parent="MainContainer/VBoxContainer/CreateGame/GridContainer"]
+[node name="GameNameInput" type="LineEdit" parent="MainContainer/VBoxContainer/CreateGame/GridContainer"]
 margin_right = 516.0
 margin_bottom = 24.0
 size_flags_horizontal = 3
