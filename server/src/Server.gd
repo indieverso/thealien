@@ -75,6 +75,6 @@ remote func list_games() -> void:
 	
 	var game_list = []
 	for game in games.get_children():
-		game_list.append({"name": game.name, "players": 1, "max_players": 10, "mode": "default"})
+		game_list.append({"name": game.name, "num_players": 1, "max_players": 10, "mode": "default"})
 	
 	rpc_id(player_id, "list_games_response", game_list)
