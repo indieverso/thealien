@@ -27,6 +27,7 @@ func _on_game_list_updated(games) -> void:
 			list_item.get_node("ServerName").text = game.name
 			list_item.get_node("NumPlayers").text = str(game.num_players) + "/" + str(game.max_players)
 			list_item.get_node("GameMode").text = str(game.mode)
+			list_item.get_node("ServerActions/JoinGameButton").connect("pressed", self, "_on_JoinGame_pressed", [game.name])
 			server_list.add_child(list_item)
 
 
@@ -39,4 +40,8 @@ func _on_CreateGameButton_pressed() -> void:
 
 
 func _on_RefreshButton_pressed() -> void:
-	print_debug("Refreshing server list")
+	list_games()
+
+
+func _on_JoinGame_pressed(game_name: String) -> void:
+	GameServer.join_game(game_name)

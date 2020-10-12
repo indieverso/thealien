@@ -3,8 +3,8 @@ extends Node
 
 func _ready() -> void:
 	spawn_player(get_tree().get_network_unique_id())
-	GameServer.network.connect("peer_connected", self, "_on_peer_connected")	
-	GameServer.network.connect("peer_disconnected", self, "_on_peer_disconnected")
+	GameServer.connect("new_player_joined", self, "_on_new_player_joined")
+	# GameServer.connect("new_player_left", self, "_on_new_player_left")
 
 
 func spawn_player(player_id: int) -> void:
@@ -15,12 +15,12 @@ func spawn_player(player_id: int) -> void:
 	$World.add_child(player)
 
 
-func _on_peer_connected(player_id: int) -> void:
+func _on_new_player_joined(player_id: int) -> void:
 	print_debug("Spawning " + str(player_id))
 	spawn_player(player_id)
 
 
-func _on_peer_disconnected(player_id: int) -> void:
+func _on_new_player_left(player_id: int) -> void:
 	print_debug("Removing " + str(player_id))
 	var player : = get_node(str(player_id))	
 	if player:

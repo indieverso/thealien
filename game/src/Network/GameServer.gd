@@ -9,6 +9,7 @@ export var gameserver_ip : String = "localhost"
 export var gameserver_port : int = 1909
 
 signal game_list_updated
+signal new_player_joined
 
 
 func connect_to_server() -> void:
@@ -49,3 +50,21 @@ func list_games():
 
 remote func list_games_response(games):
 	emit_signal("game_list_updated", games)
+
+
+func join_game(game_name: String) -> void:
+	rpc_id(1, "join_game", game_name)
+
+
+remote func join_game_response(response) -> void:
+	if not response:
+		print_debug("Failt to join the game")
+		return
+	my_game = response
+	get_tree().change_scene("res://src/Scenes/Game.tscn")
+
+
+remote func new_player_joined(player_id: int) -> void:
+	if player_id == get_tree().get_network_unique_id():
+		return
+	emit_signal("new_player_joined", player_id)

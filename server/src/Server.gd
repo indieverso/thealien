@@ -45,6 +45,11 @@ func unregister_player(player_id: int) -> void:
 		player.queue_free()
 
 
+func _add_player_to_game(player, game) -> void:
+	lobby.remove_child(player)
+	game.add_child(player)
+
+
 remote func create_game(game_name: String) -> void:
 	print("Creating game " + game_name)
 	var player_id : = get_tree().get_rpc_sender_id()
@@ -58,14 +63,9 @@ remote func create_game(game_name: String) -> void:
 		
 	var player = lobby.get_node(str(player_id))
 	if player:
-		lobby.remove_child(player)
-		game.add_child(player)
-		response = {
-			"name": game.name, 
-			"num_players": game.get_child_count(), 
-			"max_players": 10, 
-			"mode": "default"}
-	
+		_add_player_to_game(player, game)
+		response = game.to_response()
+
 	rpc_id(player_id, "create_game_response", response)
 
 
@@ -75,6 +75,24 @@ remote func list_games() -> void:
 	
 	var game_list = []
 	for game in games.get_children():
-		game_list.append({"name": game.name, "num_players": 1, "max_players": 10, "mode": "default"})
+		game_list.append(game.to_response())
 	
 	rpc_id(player_id, "list_games_response", game_list)
+
+
+remote func join_game(game_name: String) -> void:
+	var response = ""
+	var player_id : = get_tree().get_rpc_sender_id()
+	
+	print("Player " + str(player_id) + " joining game " + game_name)
+	
+	var game : = games.get_node(game_name)
+	var player = lobby.get_node(str(player_id))
+	if game and player:
+		_add_player_to_game(player, game)
+		response = game.to_response()
+		
+		for p in game.get_children():
+			rpc_id(int(p.name), "new_player_joined", player_id)
+	
+	rpc_id(player_id, "join_game_response", response)
