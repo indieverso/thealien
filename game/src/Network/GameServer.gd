@@ -10,6 +10,7 @@ export var gameserver_port : int = 1909
 
 signal game_list_updated
 signal new_player_joined
+signal player_position_updated
 
 
 func connect_to_server() -> void:
@@ -68,3 +69,11 @@ remote func new_player_joined(player_info) -> void:
 	if player_info.id == get_tree().get_network_unique_id():
 		return
 	emit_signal("new_player_joined", player_info)
+
+
+func update_player_position(position: Vector2) -> void:
+	rpc_unreliable_id(1, "update_player_position", position)
+
+
+remote func update_player_position_response(player_id: int, position: Vector2) -> void:
+	emit_signal("player_position_updated", player_id, position)

@@ -97,3 +97,8 @@ remote func join_game(game_name: String) -> void:
 			rpc_id(int(p.name), "new_player_joined", {"id": player_id})
 	
 	rpc_id(player_id, "join_game_response", response)
+
+
+remote func update_player_position(position: Vector2) -> void:
+	var player_id : = get_tree().get_rpc_sender_id()
+	rpc_unreliable("update_player_position_response", player_id, position)

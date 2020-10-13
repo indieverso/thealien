@@ -28,7 +28,13 @@ func init(player_info) -> void:
 
 func _ready() -> void:
 	# animation_tree.active = true
-	pass
+	GameServer.connect("player_position_updated", self, "_on_player_position_updated")
+
+
+func _on_player_position_updated(player_id: int, new_position: Vector2) -> void:
+	if name != str(player_id):
+		return
+	position = new_position
 
 
 func get_input_direction() -> Vector2:
@@ -47,6 +53,7 @@ func _physics_process(delta: float) -> void:
 	
 	if is_network_master():
 		velocity = move_and_slide(velocity)
+		GameServer.update_player_position(position)
 
 
 func idle_state(delta: float) -> void:
