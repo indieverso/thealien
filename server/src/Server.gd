@@ -93,6 +93,7 @@ remote func join_game(game_name: String) -> void:
 		response = game.to_response()
 		
 		for p in game.get_children():
-			rpc_id(int(p.name), "new_player_joined", player_id)
+			# @TODO Find a better way to keep all the player serialization in one place
+			rpc_id(int(p.name), "new_player_joined", {"id": player_id})
 	
 	rpc_id(player_id, "join_game_response", response)
