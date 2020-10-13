@@ -64,7 +64,7 @@ remote func join_game_response(response) -> void:
 	get_tree().change_scene("res://src/Scenes/Game.tscn")
 
 
-remote func new_player_joined(player_id: int) -> void:
-	if player_id == get_tree().get_network_unique_id():
+remote func new_player_joined(player_info) -> void:
+	if player_info.id == get_tree().get_network_unique_id():
 		return
-	emit_signal("new_player_joined", player_id)
+	emit_signal("new_player_joined", player_info)

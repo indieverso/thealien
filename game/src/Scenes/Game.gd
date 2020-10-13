@@ -2,22 +2,26 @@ extends Node
 
 
 func _ready() -> void:
-	spawn_player(get_tree().get_network_unique_id())
 	GameServer.connect("new_player_joined", self, "_on_new_player_joined")
 	# GameServer.connect("new_player_left", self, "_on_new_player_left")
+	configure_room()
 
 
-func spawn_player(player_id: int) -> void:
+func configure_room() -> void:
+	var game = GameServer.my_game
+	for p in game.players:
+		spawn_player(p)
+
+
+func spawn_player(player_info) -> void:
 	var player : KinematicBody2D = preload("res://src/Actors/Player.tscn").instance()
-	player.name = str(player_id)
-	player.set_network_master(player_id)
-	player.position = Vector2(650, 350)
+	player.init(player_info)
 	$World.add_child(player)
 
 
-func _on_new_player_joined(player_id: int) -> void:
-	print_debug("Spawning " + str(player_id))
-	spawn_player(player_id)
+func _on_new_player_joined(player_info) -> void:
+	print_debug("Spawning " + str(player_info.id))
+	spawn_player(player_info)
 
 
 func _on_new_player_left(player_id: int) -> void:
