@@ -17,18 +17,18 @@ func connect_to_server() -> void:
 	network.create_client(gameserver_ip, gameserver_port)
 	get_tree().set_network_peer(network)
 	
-	network.connect("peer_connected", self, "_on_peer_connected")
-	network.connect("peer_disconnected", self, "_on_peer_disconnected")
+	network.connect("connection_succeeded", self, "_on_connection_succeeded")
+	network.connect("connection_failed", self, "_on_connection_failed")
 
 
-func _on_peer_connected(player_id: int) -> void:
-	print_debug("Player " + str(player_id) + " connected.")
+func _on_connection_succeeded() -> void:
+	print("Succesfully connected to the game server.")
 	# TODO Dispatch an event instead using the code down bellow
 	get_tree().change_scene("res://src/Scenes/Main.tscn")
 
 
-func _on_peer_disconnected(player_id: int) -> void:
-	print_debug("Player " + str(player_id) + " disconnected")
+func _on_connection_failed() -> void:
+	print("Failed to connected to the game server.")
 
 
 func create_game(game_name: String) -> void:
