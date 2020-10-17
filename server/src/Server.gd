@@ -42,7 +42,7 @@ func _on_peer_disconnected(player_id: int) -> void:
 
 
 func register_player(player_id: int) -> void:
-	var player : Node = Node.new()
+	var player : = preload("res://src/Actors/Player.tscn").instance()
 	player.name = str(player_id)
 	Lobby.add_child(player)
 	emit_signal("player_registred", player_id)
@@ -104,12 +104,13 @@ remote func join_game(game_name: String) -> void:
 	var response = ""
 	
 	var game : = Games.get_node(game_name)
-	var player = Lobby.get_node(str(player_id))
+	var player : = Lobby.get_node(str(player_id))
 	if game and player:
 		_add_player_to_game(player, game)
 		response = game.serialize()
 		
-		for p in game.get_children():
+		# notify all players in the room
+		for p in game.get_players():
 			if int(p.name) != player_id:
 				rpc_id(int(p.name), "player_joined_game", game_name, p.serialize())
 	

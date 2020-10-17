@@ -23,8 +23,8 @@ func remove_player(player_id: int):
 
 
 func get_players() -> Array:
-	var players = []
-	for p in get_children():
+	var players : = []
+	for p in World.get_children():
 		players.append(p.serialize())
 	return players
 
@@ -33,7 +33,7 @@ func serialize():
 	return {
 		"name": name, 
 		"players": get_players(),
-		"num_players": get_child_count(), 
+		"num_players": World.get_child_count(),
 		"max_players": 10, 
 		"mode": "default"
 	}
