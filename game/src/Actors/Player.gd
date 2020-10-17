@@ -25,7 +25,8 @@ onready var animation_tree : AnimationTree = $AnimationTree
 onready var action_area : Area2D = $ActionArea
 
 
-func init(player_info) -> void:
+func init(info) -> void:
+	player_info = info
 	name = str(player_info.id)
 	position = Vector2(650, 350)
 	set_network_master(player_info.id)

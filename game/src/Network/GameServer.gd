@@ -83,5 +83,6 @@ remote func join_game_response(response) -> void:
 	get_tree().change_scene("res://src/Scenes/Game.tscn")
 
 
-remote func player_joined_game(game_name, player_info) -> void:
-	emit_signal("player_joined_game", game_name, player_info)
+remote func player_joined_game(player_info) -> void:
+	print(player_info)
+	emit_signal("player_joined_game", player_info)

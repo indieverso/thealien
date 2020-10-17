@@ -112,7 +112,6 @@ remote func join_game(game_name: String) -> void:
 		
 		# notify all players in the room
 		for p in game.get_players():
-			if int(p.name) != player_id:
-				rpc_id(int(p.name), "player_joined_game", game_name, p.serialize())
+			rpc_id(int(p.name), "player_joined_game", player.serialize())
 	
 	rpc_id(player_id, "join_game_response", response)
