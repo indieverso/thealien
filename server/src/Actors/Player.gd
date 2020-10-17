@@ -6,7 +6,10 @@ enum {
 	MOVE
 }
 
-var player_info : = {}
+var player_info : = {
+	"id": 0,
+	"name": "???",
+}
 
 var current_state : = IDLE
 var velocity : Vector2 = Vector2.ZERO
@@ -19,18 +22,10 @@ export var acceleration : float = 600.0
 export var max_speed : float = 400.0
 export var friction : float = 350.0
 
-onready var animation_player : AnimationPlayer = $AnimationPlayer
-onready var animation_tree : AnimationTree = $AnimationTree
-# onready var animation_state : AnimationNodeStateMachine = animation_state.get("parameters/playback")
-onready var action_area : Area2D = $ActionArea
-
-
-func init(info) -> void:
-	player_info = info
-	name = str(player_info.id)
-	position = Vector2(650, 350)
-	set_network_master(player_info.id)
-	$CenterContainer/Label.text = player_info.name
+#onready var animation_player : AnimationPlayer = $AnimationPlayer
+#onready var animation_tree : AnimationTree = $AnimationTree
+#onready var animation_state : AnimationNodeStateMachine = animation_state.get("parameters/playback")
+#onready var action_area : Area2D = $ActionArea
 
 
 func _ready() -> void:
@@ -46,9 +41,8 @@ func get_input_direction() -> Vector2:
 
 
 func _physics_process(delta: float) -> void:
-	if not is_network_master():
-		position = puppet_position
-		velocity = puppet_velocity
+	position = puppet_position
+	velocity = puppet_velocity
 	
 	match current_state:
 		IDLE:
@@ -56,11 +50,8 @@ func _physics_process(delta: float) -> void:
 		MOVE:
 			move_state(delta)
 	
-	if is_network_master():
-		velocity = move_and_slide(velocity)
-		
-		rset_unreliable("puppet_position", position)
-		rset_unreliable("puppet_velocity", velocity)
+	velocity = move_and_slide(velocity)
+	puppet_position = position
 
 
 func idle_state(delta: float) -> void:
@@ -88,3 +79,10 @@ func move_state(delta: float) -> void:
 			acceleration * delta)
 	else:
 		current_state = IDLE
+
+
+func serialize():
+	return {
+		"id": int(name),
+		"name": name,
+	}

@@ -8,9 +8,14 @@
 
 config_version=4
 
-_global_script_classes=[  ]
+_global_script_classes=[ {
+"base": "KinematicBody2D",
+"class": "Player",
+"language": "GDScript",
+"path": "res://src/Actors/Player.gd"
+} ]
 _global_script_class_icons={
-
+"Player": ""
 }
 
 [application]
@@ -21,7 +26,7 @@ config/icon="res://icon.png"
 
 [autoload]
 
-GatewayServer="*res://src/Network/GatewayServer.gd"
+GatewayServer="*res://src/Network/GatewaySever.gd"
 GameServer="*res://src/Network/GameServer.gd"
 
 [display]
