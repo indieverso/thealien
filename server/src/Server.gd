@@ -5,8 +5,11 @@ var network : NetworkedMultiplayerENet = NetworkedMultiplayerENet.new()
 
 export var port : int = 1909
 
-onready var lobby : = $Lobby
-onready var games : = $Games
+onready var Lobby : = $Lobby
+onready var Games : = $Games
+
+signal player_registred
+signal player_unregistred
 
 
 func _ready() -> void:
@@ -33,21 +36,33 @@ func _on_peer_disconnected(player_id: int) -> void:
 	unregister_player(player_id)
 
 
+##################################
+## Player Controller
+##################################
+
+
 func register_player(player_id: int) -> void:
 	var player : Node = Node.new()
 	player.name = str(player_id)
-	lobby.add_child(player)
+	Lobby.add_child(player)
+	emit_signal("player_registred", player_id)
 
 
 func unregister_player(player_id: int) -> void:
-	var player : = lobby.get_node(str(player_id))
+	var player : = Lobby.get_node(str(player_id))
 	if player:
 		player.queue_free()
+		emit_signal("player_unregistred", player_id)
+
+
+##################################
+## GAME CONTROLLER
+##################################
 
 
 func _add_player_to_game(player, game) -> void:
-	lobby.remove_child(player)
-	game.add_child(player)
+	Lobby.remove_child(player)
+	game.add_player(player)
 
 
 remote func create_game(game_name: String) -> void:
@@ -57,14 +72,15 @@ remote func create_game(game_name: String) -> void:
 	var game : = preload("res://src/Game/Game.tscn").instance()
 	game.name = game_name
 	game.init(player_id)
-	games.add_child(game)
+	
+	Games.add_child(game)
 	
 	var response = ""
 		
-	var player = lobby.get_node(str(player_id))
-	if player:
+	var player = Lobby.get_node(str(player_id))
+	if player and game:
 		_add_player_to_game(player, game)
-		response = game.to_response()
+		response = game.serialize()
 
 	rpc_id(player_id, "create_game_response", response)
 
@@ -74,31 +90,27 @@ remote func list_games() -> void:
 	var player_id : = get_tree().get_rpc_sender_id()
 	
 	var game_list = []
-	for game in games.get_children():
-		game_list.append(game.to_response())
+	for game in Games.get_children():
+		game_list.append(game.serialize())
 	
 	rpc_id(player_id, "list_games_response", game_list)
 
 
 remote func join_game(game_name: String) -> void:
-	var response = ""
 	var player_id : = get_tree().get_rpc_sender_id()
 	
 	print("Player " + str(player_id) + " joining game " + game_name)
 	
-	var game : = games.get_node(game_name)
-	var player = lobby.get_node(str(player_id))
+	var response = ""
+	
+	var game : = Games.get_node(game_name)
+	var player = Lobby.get_node(str(player_id))
 	if game and player:
 		_add_player_to_game(player, game)
-		response = game.to_response()
+		response = game.serialize()
 		
 		for p in game.get_children():
-			# @TODO Find a better way to keep all the player serialization in one place
-			rpc_id(int(p.name), "new_player_joined", {"id": player_id})
+			if int(p.name) != player_id:
+				rpc_id(int(p.name), "player_joined_game", game_name, p.serialize())
 	
 	rpc_id(player_id, "join_game_response", response)
-
-
-remote func update_player_position(position: Vector2) -> void:
-	var player_id : = get_tree().get_rpc_sender_id()
-	rpc_unreliable("update_player_position_response", player_id, position)

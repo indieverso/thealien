@@ -1,6 +1,8 @@
 extends Node
 
 
+onready var World : = $World
+
 var _game_owner : int
 
 
@@ -8,17 +10,26 @@ func init(game_owner: int) -> void:
 	_game_owner = game_owner
 
 
-func get_players():
+func add_player(player: Player) -> void:
+	World.add_child(player)
+
+
+func remove_player(player_id: int):
+	if not World.has_node(str(player_id)):
+		return
+	var player : = World.get_node(str(player_id))
+	World.remove_child(player)
+	return player
+
+
+func get_players() -> Array:
 	var players = []
 	for p in get_children():
-		# @TODO Find a better way to keep all the player serialization in one place
-		players.append({
-			"id": int(p.name)
-		})
+		players.append(p.serialize())
 	return players
 
 
-func to_response():
+func serialize():
 	return {
 		"name": name, 
 		"players": get_players(),

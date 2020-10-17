@@ -1,12 +1,18 @@
 extends KinematicBody2D
+class_name Player
 
 enum {
 	IDLE,
 	MOVE
 }
 
+var player_info : = {}
+
 var current_state : = IDLE
 var velocity : Vector2 = Vector2.ZERO
+
+var puppet_current_state : = IDLE
+var puppet_velocity : Vector2 = Vector2.ZERO
 
 export var is_alien : bool = false
 export var acceleration : float = 600.0
@@ -23,18 +29,12 @@ func init(player_info) -> void:
 	name = str(player_info.id)
 	position = Vector2(650, 350)
 	set_network_master(player_info.id)
-	$CenterContainer/Label.text = str(player_info.id)
+	$CenterContainer/Label.text = player_info.name
 
 
 func _ready() -> void:
 	# animation_tree.active = true
-	GameServer.connect("player_position_updated", self, "_on_player_position_updated")
-
-
-func _on_player_position_updated(player_id: int, new_position: Vector2) -> void:
-	if name != str(player_id):
-		return
-	position = new_position
+	pass
 
 
 func get_input_direction() -> Vector2:
@@ -53,7 +53,6 @@ func _physics_process(delta: float) -> void:
 	
 	if is_network_master():
 		velocity = move_and_slide(velocity)
-		GameServer.update_player_position(position)
 
 
 func idle_state(delta: float) -> void:
