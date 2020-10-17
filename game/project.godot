@@ -26,7 +26,7 @@ config/icon="res://icon.png"
 
 [autoload]
 
-GatewayServer="*res://src/Network/GatewayServer.gd"
+GatewayServer="*res://src/Network/GatewaySever.gd"
 GameServer="*res://src/Network/GameServer.gd"
 
 [display]

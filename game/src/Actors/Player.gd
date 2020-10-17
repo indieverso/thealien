@@ -11,8 +11,8 @@ var player_info : = {}
 var current_state : = IDLE
 var velocity : Vector2 = Vector2.ZERO
 
-var puppet_current_state : = IDLE
-var puppet_velocity : Vector2 = Vector2.ZERO
+puppet var puppet_position : Vector2
+puppet var puppet_velocity : Vector2 = Vector2.ZERO
 
 export var is_alien : bool = false
 export var acceleration : float = 600.0
@@ -45,6 +45,10 @@ func get_input_direction() -> Vector2:
 
 
 func _physics_process(delta: float) -> void:
+	if not is_network_master():
+		position = puppet_position
+		velocity = puppet_velocity
+	
 	match current_state:
 		IDLE:
 			idle_state(delta)
@@ -53,6 +57,9 @@ func _physics_process(delta: float) -> void:
 	
 	if is_network_master():
 		velocity = move_and_slide(velocity)
+		
+		rset_unreliable("puppet_position", position)
+		rset_unreliable("puppet_velocity", velocity)
 
 
 func idle_state(delta: float) -> void:

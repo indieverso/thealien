@@ -1,7 +1,7 @@
 extends Node
 
-onready var World : = $World
-
+onready var GameRoom := $GameRoom
+onready var World : = $GameRoom/World
 
 func _ready() -> void:
 	GameServer.connect("new_player_joined", self, "_on_new_player_joined")
@@ -11,6 +11,7 @@ func _ready() -> void:
 
 func _configure_room() -> void:
 	var game = GameServer.my_game
+	GameRoom.name = game.name
 	for p in game.players:
 		spawn_player(p)
 

@@ -24,6 +24,10 @@ config/name="The Alien - GameServer"
 run/main_scene="res://src/Server.tscn"
 config/icon="res://icon.png"
 
+[autoload]
+
+GameServer="*res://src/Network/GameServer.gd"
+
 [rendering]
 
 environment/default_environment="res://default_env.tres"

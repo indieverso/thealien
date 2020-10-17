@@ -4,7 +4,7 @@ onready var game_name_input : = $MainContainer/VBoxContainer/CreateGame/GridCont
 
 
 func _ready() -> void:
-	game_name_input.text = GameServer.my_info.username + " server"
+	game_name_input.text = "Player's server"
 
 
 func _on_BackButton_pressed() -> void:

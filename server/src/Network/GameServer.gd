@@ -5,8 +5,8 @@ var network : NetworkedMultiplayerENet = NetworkedMultiplayerENet.new()
 
 export var port : int = 1909
 
-onready var Lobby : = $Lobby
-onready var Games : = $Games
+onready var Lobby : = get_node("/root/Server/Lobby")
+onready var Games : = get_node("/root/Server/Game")
 
 signal player_registred
 signal player_unregistred
@@ -44,6 +44,7 @@ func _on_peer_disconnected(player_id: int) -> void:
 func register_player(player_id: int) -> void:
 	var player : = preload("res://src/Actors/Player.tscn").instance()
 	player.name = str(player_id)
+	player.set_network_master(player_id)
 	Lobby.add_child(player)
 	emit_signal("player_registred", player_id)
 
