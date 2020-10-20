@@ -1,5 +1,11 @@
 # The Alien
 
+<p align="center">
+  <a href="https://discord.gg/FqXEuYZ" target="_blank">
+    <img alt="Discord" src="https://img.shields.io/discord/768176989953327135">
+  </a>
+</p>
+
 A multiplayer game inspired by Among Us developed with Godot.
 
 
@@ -20,3 +26,11 @@ In order to execute the game to test, you should open all the projects on Godot,
 4. Game
 
 The credentials to login to the game is both (username and password): **test**
+
+# Contributing
+
+Thank you for considering contributing to the project. I'll strongly advise you to choose an open issue to work on it, and then submit a PR.
+
+# License
+
+The project is licensed under MIT. All the project assets (sounds, tilesets, and sprites) are licensed under CC Non-Commercial.
