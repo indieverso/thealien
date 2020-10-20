@@ -15,10 +15,14 @@ func _init():
 	pass
 
 
-func authenticate(username: String, password: String) -> bool:
+func authenticate(username: String, password: String) -> String:
 	username = username.to_lower()
 	if not players.has(username):
-		return false
+		return ""
 	if players[username].password != password:
-		return false
-	return true
+		return ""
+	
+	var at : = AuthToken.new()
+	var token = at.generate_token({"username": username})
+	
+	return token

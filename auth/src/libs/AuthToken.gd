@@ -1,25 +1,21 @@
 extends Node
+class_name AuthToken
 
-var secret = '16813a12f718bc5c620f56944e1abc3ea13ccbac'
+# You can set it via GODOT_TOKEN_SECRET environment variable
+var secret = 'YQoy1pFDOHeddU8TnN9w4kckg4EWlbZ5'
 
 
 func _ready() -> void:
+	if OS.has_environment("GODOT_TOKEN_SECRET"):
+		secret = OS.get_environment("GODOT_TOKEN_SECRET")
+
+
+func generate_token(payload) -> String:
 	var header = {
 		"typ": "JWT",
 		"alg": "HS256"
 	}
 	
-	var payload = {
-		"id": 1,
-		"name": "Ricardo"
-	}
-	
-	var jwt : = generate_token(header, payload)
-	
-	print(jwt)
-
-
-func generate_token(header, payload) -> String:
 	var encoded_header : String = base64_encode(json_encode(header))
 	var encoded_payload : String = base64_encode(json_encode(payload))
 	

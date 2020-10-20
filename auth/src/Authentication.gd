@@ -7,6 +7,9 @@ export var max_servers : int = 5
 
 
 func _ready() -> void:
+	if OS.has_environment("GODOT_ATHENTICATION_PORT"):
+		port = int(OS.get_environment("GODOT_AUTHENTICATION_PORT"))
+	
 	start_server()
 
 

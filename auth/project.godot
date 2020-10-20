@@ -10,11 +10,17 @@ config_version=4
 
 _global_script_classes=[ {
 "base": "Node",
+"class": "AuthToken",
+"language": "GDScript",
+"path": "res://src/libs/AuthToken.gd"
+}, {
+"base": "Node",
 "class": "PlayerStore",
 "language": "GDScript",
 "path": "res://src/store/PlayerStore.gd"
 } ]
 _global_script_class_icons={
+"AuthToken": "",
 "PlayerStore": ""
 }
 
