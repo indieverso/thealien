@@ -1,4 +1,8 @@
-<h1 align="center">THE ALIEN</h1>
+<p align="center">
+  <a href="http://www.sumelms.com">
+    <img src=".github/logo.svg" height="80"/>
+  </a>
+</p>
 
 <p align="center">
   <a href="https://discord.gg/FqXEuYZ" target="_blank">
