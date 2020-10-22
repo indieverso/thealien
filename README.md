@@ -1,4 +1,8 @@
-<h1 align="center">THE ALIEN</h1>
+<p align="center">
+  <a href="http://www.sumelms.com">
+    <img src=".github/logo.svg" height="80"/>
+  </a>
+</p>
 
 <p align="center">
   <a href="https://discord.gg/FqXEuYZ" target="_blank">
@@ -12,19 +16,18 @@
 
 ## About the game
 
-The Alien is a open-source multiplayer game, inspired by "Among Us" and "Mafia".
+The Alien is an open-source multiplayer game, inspired by "Among Us" and "Mafia".
 
-In this game, you are placed with other players in some map, and you need to use your social and investigative skills to survive.
+In this game, you are placed with other players on some map, and you need to use your social and investigative skills to survive.
 
-This game doesn't have any commercial goal, it is developed just for fun and with the help of the community.
+This game doesn't have any commercial goal, it is developed just for fun, and with the help of the community.
 
-## Players (WIP)
+## How to play (WIP)
 
-You can download the game directly from [itch.io](https://rluders.itch.io/the-alien). It is 100% free.
+1. You can download the game directly from [itch.io](https://rluders.itch.io/the-alien). It is 100% free.
+2. Play! 😎
 
-## Developers
-
-### How to run it (WIP)
+## How to develop (WIP)
 
 This repository has 4 Godot projects:
 
