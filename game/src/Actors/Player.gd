@@ -45,6 +45,24 @@ func get_input_direction() -> Vector2:
 	).normalized()
 
 
+func _input(event: InputEvent) -> void:
+	if event.is_action_pressed("interact"):
+		print("Interact")
+		return
+	
+	if event.is_action_pressed("kill"):
+		print("Kill")
+		return
+	
+	if event.is_action_pressed("toggle_tasks"):
+		print("Toggle tasks")
+		return
+	
+	if event.is_action_pressed("use_skill"):
+		print("Use still")
+		return
+
+
 func _physics_process(delta: float) -> void:
 	if not is_network_master():
 		position = puppet_position
