@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://src/Scenes/Game.gd" type="Script" id=1]
+[ext_resource path="res://src/Objects/Interactable.tscn" type="PackedScene" id=2]
 
 [node name="Server" type="Node"]
 
@@ -10,3 +11,6 @@ script = ExtResource( 1 )
 [node name="GameRoom" type="Node" parent="Game"]
 
 [node name="World" type="Node2D" parent="Game/GameRoom"]
+
+[node name="Interactable" parent="Game/GameRoom/World" instance=ExtResource( 2 )]
+position = Vector2( 140.841, 139.343 )

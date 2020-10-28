@@ -19,10 +19,13 @@ export var acceleration : float = 600.0
 export var max_speed : float = 400.0
 export var friction : float = 350.0
 
+# Animation
 onready var animation_player : AnimationPlayer = $AnimationPlayer
 onready var animation_tree : AnimationTree = $AnimationTree
 # onready var animation_state : AnimationNodeStateMachine = animation_state.get("parameters/playback")
-onready var action_area : Area2D = $ActionArea
+
+# Game mechanics
+onready var interactable_area : = $InteractableArea
 
 
 func init(info) -> void:
@@ -47,7 +50,7 @@ func get_input_direction() -> Vector2:
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("interact"):
-		print("Interact")
+		interactable_area.handle_interact()
 		return
 	
 	if event.is_action_pressed("kill"):
