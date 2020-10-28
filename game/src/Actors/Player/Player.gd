@@ -26,7 +26,7 @@ onready var animation_tree : AnimationTree = $AnimationTree
 
 # Game mechanics
 onready var interactable_area : = $InteractableArea
-
+onready var killable_area : = $KillableArea
 
 func init(info) -> void:
 	player_info = info
@@ -54,7 +54,7 @@ func _input(event: InputEvent) -> void:
 		return
 	
 	if event.is_action_pressed("kill"):
-		print("Kill")
+		killable_area.handle_kill()
 		return
 	
 	if event.is_action_pressed("toggle_tasks"):
