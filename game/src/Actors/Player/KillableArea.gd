@@ -27,7 +27,7 @@ func _is_current_player(id: int) -> bool:
 
 
 func can_kill() -> bool:
-	return target != null
+	return target != null and target.is_alive
 
 
 func handle_kill() -> void:

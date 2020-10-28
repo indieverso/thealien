@@ -14,6 +14,7 @@ var velocity : Vector2 = Vector2.ZERO
 puppet var puppet_position : Vector2
 puppet var puppet_velocity : Vector2 = Vector2.ZERO
 
+export var is_alive : bool = true
 export var is_alien : bool = false
 export var acceleration : float = 600.0
 export var max_speed : float = 400.0
