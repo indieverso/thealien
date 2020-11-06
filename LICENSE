@@ -1,3 +1,12 @@
+DISCLAIMER
+
+This project is dual-licensed:
+
+- The source code is available under the MIT license.
+- All the game art assets (images, audio files) are under [CC BY-NC 4.0](https://creativecommons.org/licenses/by-nc/4.0/).
+
+----------------------------------
+
 MIT License
 
 Copyright (c) 2020 Ricardo Lüders
@@ -19,3 +28,24 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
+
+----------------------------------
+
+Attribution-NonCommercial 4.0 International (CC BY-NC 4.0) 
+
+You are free to:
+
+Share — copy and redistribute the material in any medium or format
+Adapt — remix, transform, and build upon the material
+
+The licensor cannot revoke these freedoms as long as you follow the license terms.
+
+Attribution — You must give appropriate credit, provide a link to the 
+license, and indicate if changes were made. You may do so in any reasonable manner, 
+but not in any way that suggests the licensor endorses you or your use.
+
+You can attribute them to `Indieverso and contributors (https://github.com/indieverso/)`.
+
+NonCommercial — You may not use the material for commercial purposes. 
+
+Read the full license on: https://creativecommons.org/licenses/by-nc/4.0/
