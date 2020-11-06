@@ -17,13 +17,13 @@ func _configure_room() -> void:
 
 
 func spawn_player(player_info) -> void:
-	var player : = preload("res://src/Actors/Player.tscn").instance()
+	var player : = preload("res://src/Actors/Player/Player.tscn").instance()
 	player_info.position = SpawnPoint.global_transform
 	player.init(player_info)
 	World.add_child(player)
 	# Adds the player camera
 	if player_info.id == get_tree().get_network_unique_id():
-		var camera : = Camera2D.new()
+		var camera : = Camera.new()
 		player.add_child(camera)
 		camera.make_current()
 

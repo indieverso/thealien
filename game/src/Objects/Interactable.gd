@@ -1,7 +1,7 @@
-extends Node2D
+extends Spatial
 class_name Interactable
 
-onready var interactable_area : Area2D = $InteractableArea
+onready var interactable_area : Area = $InteractableArea
 
 
 func _ready() -> void:
