@@ -17,7 +17,7 @@ func _configure_room() -> void:
 
 
 func spawn_player(player_info) -> void:
-	var player : = preload("res://src/Actors/Player/Player.tscn").instance()
+	var player : = preload("res://src/Player/Player.tscn").instance()
 	player_info.position = SpawnPoint.global_transform
 	player.init(player_info)
 	World.add_child(player)
