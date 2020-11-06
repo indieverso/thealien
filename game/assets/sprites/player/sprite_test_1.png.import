@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/alienBlue_walk2.png-0bf31cc4b9bbe9e76579093625da0d3c.stex"
+path="res://.import/sprite_test_1.png-193cb3c79b7cb7986b16c531fa68155f.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/player/alienBlue_walk2.png"
-dest_files=[ "res://.import/alienBlue_walk2.png-0bf31cc4b9bbe9e76579093625da0d3c.stex" ]
+source_file="res://assets/sprites/player/sprite_test_1.png"
+dest_files=[ "res://.import/sprite_test_1.png-193cb3c79b7cb7986b16c531fa68155f.stex" ]
 
 [params]
 

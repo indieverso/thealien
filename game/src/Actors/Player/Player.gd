@@ -14,16 +14,20 @@ var velocity : Vector3 = Vector3.ZERO
 puppet var puppet_position : Vector3
 puppet var puppet_velocity : Vector3 = Vector3.ZERO
 
+export var is_alive : bool = true
 export var is_alien : bool = false
 export var acceleration : float = 600.0
 export var max_speed : float = 400.0
 export var friction : float = 350.0
 
+# Animation
 onready var animation_player : AnimationPlayer = $AnimationPlayer
 onready var animation_tree : AnimationTree = $AnimationTree
 # onready var animation_state : AnimationNodeStateMachine = animation_state.get("parameters/playback")
-onready var action_area : Area2D = $ActionArea
 
+# Game mechanics
+onready var interactable_area : = $InteractableArea
+onready var killable_area : = $KillableArea
 
 func init(info) -> void:
 	player_info = info
@@ -42,6 +46,24 @@ func get_input_direction() -> Vector3:
 	var h_mov : = Input.get_action_strength("ui_right") - Input.get_action_strength("ui_left")
 	var v_mov : = Input.get_action_strength("ui_down") - Input.get_action_strength("ui_up")
 	return Vector3(h_mov, 0, v_mov).normalized()
+
+
+func _input(event: InputEvent) -> void:
+	if event.is_action_pressed("interact"):
+		interactable_area.handle_interact()
+		return
+	
+	if event.is_action_pressed("kill"):
+		killable_area.handle_kill()
+		return
+	
+	if event.is_action_pressed("toggle_tasks"):
+		print("Toggle tasks")
+		return
+	
+	if event.is_action_pressed("use_skill"):
+		print("Use still")
+		return
 
 
 func _physics_process(delta: float) -> void:

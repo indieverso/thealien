@@ -21,6 +21,11 @@ func spawn_player(player_info) -> void:
 	player_info.position = SpawnPoint.global_transform
 	player.init(player_info)
 	World.add_child(player)
+	# Adds the player camera
+	if player_info.id == get_tree().get_network_unique_id():
+		var camera : = Camera2D.new()
+		player.add_child(camera)
+		camera.make_current()
 
 
 func _on_player_joined_game(player_info) -> void:

@@ -1,0 +1,66 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://src/Actors/Player/Player.gd" type="Script" id=1]
+[ext_resource path="res://assets/sprites/player/sprite_test_1.png" type="Texture" id=2]
+[ext_resource path="res://src/Actors/Actor.tscn" type="PackedScene" id=3]
+[ext_resource path="res://src/Actors/Player/InteractableArea.gd" type="Script" id=4]
+[ext_resource path="res://src/Actors/Player/KillableArea.gd" type="Script" id=5]
+
+[sub_resource type="CircleShape2D" id=1]
+radius = 13.5861
+
+[sub_resource type="CircleShape2D" id=2]
+radius = 86.3264
+
+[sub_resource type="CircleShape2D" id=3]
+radius = 96.831
+
+[node name="Player" instance=ExtResource( 3 )]
+input_pickable = true
+collision_layer = 2
+collision_mask = 13
+script = ExtResource( 1 )
+max_speed = 100.0
+
+[node name="Sprite" parent="." index="0"]
+scale = Vector2( 0.2, 0.2 )
+texture = ExtResource( 2 )
+
+[node name="CollisionShape2D" parent="." index="1"]
+position = Vector2( 0, 39.6398 )
+shape = SubResource( 1 )
+
+[node name="CenterContainer" type="CenterContainer" parent="." index="4"]
+margin_top = -100.0
+margin_bottom = -100.0
+use_top_left = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="CenterContainer" index="0"]
+margin_left = -19.0
+margin_top = -7.0
+margin_right = 19.0
+margin_bottom = 7.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "NAME"
+
+[node name="InteractableArea" type="Area2D" parent="." index="5"]
+visible = false
+script = ExtResource( 4 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractableArea" index="0"]
+modulate = Color( 0.0352941, 0.901961, 0.25098, 1 )
+shape = SubResource( 2 )
+
+[node name="KillableArea" type="Area2D" parent="." index="6"]
+visible = false
+collision_layer = 0
+collision_mask = 2
+script = ExtResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="KillableArea" index="0"]
+modulate = Color( 0.376471, 0.427451, 0.454902, 1 )
+shape = SubResource( 3 )
