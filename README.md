@@ -51,4 +51,6 @@ Thank you for considering contributing to the project. I'll strongly advise you 
 
 # License
 
-The project is licensed under MIT. All the project assets (sounds, tilesets, and sprites) are licensed under CC Non-Commercial.
+The project code is licensed under MIT. All the game art assets (images, audio files) are under [CC BY-NC 4.0](https://creativecommons.org/licenses/by-nc/4.0/).
+
+For more information check the [LICENSE](LICENSE) file.
