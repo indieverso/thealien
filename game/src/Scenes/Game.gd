@@ -2,6 +2,7 @@ extends Node
 
 onready var GameRoom := $GameRoom
 onready var World : = $GameRoom/World
+onready var SpawnPoint : = $GameRoom/World/SpawnPoint
 
 func _ready() -> void:
 	GameServer.connect("player_joined_game", self, "_on_player_joined_game")
@@ -17,6 +18,7 @@ func _configure_room() -> void:
 
 func spawn_player(player_info) -> void:
 	var player : = preload("res://src/Actors/Player.tscn").instance()
+	player_info.position = SpawnPoint.global_transform
 	player.init(player_info)
 	World.add_child(player)
 

@@ -1,4 +1,4 @@
-extends KinematicBody2D
+extends KinematicBody
 class_name Player
 
 enum {
@@ -9,10 +9,10 @@ enum {
 var player_info : = {}
 
 var current_state : = IDLE
-var velocity : Vector2 = Vector2.ZERO
+var velocity : Vector3 = Vector3.ZERO
 
-puppet var puppet_position : Vector2
-puppet var puppet_velocity : Vector2 = Vector2.ZERO
+puppet var puppet_position : Vector3
+puppet var puppet_velocity : Vector3 = Vector3.ZERO
 
 export var is_alien : bool = false
 export var acceleration : float = 600.0
@@ -27,8 +27,8 @@ onready var action_area : Area2D = $ActionArea
 
 func init(info) -> void:
 	player_info = info
-	name = str(player_info.id)
-	position = Vector2(650, 350)
+	name = str(player_info.id)	
+	global_transform = player_info.position
 	set_network_master(player_info.id)
 	$CenterContainer/Label.text = player_info.name
 
@@ -38,16 +38,15 @@ func _ready() -> void:
 	pass
 
 
-func get_input_direction() -> Vector2:
-	return Vector2(
-		Input.get_action_strength("ui_right") - Input.get_action_strength("ui_left"),
-		Input.get_action_strength("ui_down") - Input.get_action_strength("ui_up")
-	).normalized()
+func get_input_direction() -> Vector3:
+	var h_mov : = Input.get_action_strength("ui_right") - Input.get_action_strength("ui_left")
+	var v_mov : = Input.get_action_strength("ui_down") - Input.get_action_strength("ui_up")
+	return Vector3(h_mov, 0, v_mov).normalized()
 
 
 func _physics_process(delta: float) -> void:
 	if not is_network_master():
-		position = puppet_position
+		global_transform.origin = puppet_position
 		velocity = puppet_velocity
 	
 	match current_state:
@@ -57,28 +56,28 @@ func _physics_process(delta: float) -> void:
 			move_state(delta)
 	
 	if is_network_master():
-		velocity = move_and_slide(velocity)
+		velocity = move_and_slide(velocity, Vector3.UP)
 		
-		rset_unreliable("puppet_position", position)
+		rset_unreliable("puppet_position", global_transform.origin)
 		rset_unreliable("puppet_velocity", velocity)
 
 
 func idle_state(delta: float) -> void:
 	var input_direction = get_input_direction()
-	if input_direction != Vector2.ZERO:
+	if input_direction != Vector3.ZERO:
 		current_state = MOVE
 		return
 	
 	# animation_state.travel("Idle")
 	
-	if velocity != Vector2.ZERO:
-		velocity = velocity.move_toward(Vector2.ZERO, friction * delta)
+	if velocity != Vector3.ZERO:
+		velocity = velocity.move_toward(Vector3.ZERO, friction * delta)
 
 
 func move_state(delta: float) -> void:
 	var input_direction = get_input_direction()
 	
-	if input_direction != Vector2.ZERO:
+	if input_direction != Vector3.ZERO:
 		# animation_tree.set("parameters/Idle/blend_position", input_direction)
 		# note: must to be done to all states on animation_tree
 		

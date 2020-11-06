@@ -1,4 +1,4 @@
-extends KinematicBody2D
+extends KinematicBody
 class_name Player
 
 enum {
@@ -12,21 +12,21 @@ var player_info : = {
 }
 
 var current_state : = IDLE
-var velocity : Vector2 = Vector2.ZERO
+var velocity : Vector3 = Vector3.ZERO
 
-puppet var puppet_position : Vector2
-puppet var puppet_velocity : Vector2 = Vector2.ZERO
+puppet var puppet_position : Vector3
+puppet var puppet_velocity : Vector3 = Vector3.ZERO
 
 
 func _ready() -> void:
 	pass
 
 func _physics_process(delta: float) -> void:
-	position = puppet_position
+	global_transform.origin = puppet_position
 	velocity = puppet_velocity
 	
 	velocity = move_and_slide(velocity)
-	puppet_position = position
+	puppet_position = global_transform.origin
 
 
 func serialize():
