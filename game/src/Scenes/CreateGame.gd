@@ -1,6 +1,6 @@
 extends Control
 
-onready var game_name_input : = $MainContainer/VBoxContainer/CreateGame/GridContainer/GameNameInput
+onready var game_name_input := $MainContainer/VBoxContainer/CreateGame/GridContainer/GameNameInput
 
 
 func _ready() -> void:
@@ -12,5 +12,5 @@ func _on_BackButton_pressed() -> void:
 
 
 func _on_StartGameButton_pressed() -> void:
-	var game_name : String = game_name_input.text
+	var game_name: String = game_name_input.text
 	GameServer.create_game(game_name)

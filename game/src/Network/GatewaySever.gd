@@ -1,13 +1,13 @@
 extends Node
 
-var _username : String
-var _password : String
+var _username: String
+var _password: String
 
-var network : = NetworkedMultiplayerENet.new()
-var gateway_api : = MultiplayerAPI.new()
+var network := NetworkedMultiplayerENet.new()
+var gateway_api := MultiplayerAPI.new()
 
-export var gatewayserver_ip : String = "localhost"
-export var gatewayserver_port : int = 1910
+export var gatewayserver_ip: String = "localhost"
+export var gatewayserver_port: int = 1910
 
 signal authenticating
 signal login_succeeded

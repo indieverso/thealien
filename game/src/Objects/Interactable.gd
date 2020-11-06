@@ -1,7 +1,7 @@
 extends Spatial
 class_name Interactable
 
-onready var interactable_area : Area = $InteractableArea
+onready var interactable_area: Area = $InteractableArea
 
 
 func _ready() -> void:

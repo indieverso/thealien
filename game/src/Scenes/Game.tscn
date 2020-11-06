@@ -1,8 +1,13 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://src/Scenes/Game.gd" type="Script" id=1]
+[ext_resource path="res://src/Objects/Interactable.tscn" type="PackedScene" id=2]
 
 [sub_resource type="PlaneMesh" id=1]
+size = Vector2( 10, 10 )
+
+[sub_resource type="BoxShape" id=2]
+extents = Vector3( 4.87792, 1, 4.87043 )
 
 [node name="Server" type="Node"]
 
@@ -18,5 +23,19 @@ transform = Transform( 6.0341, 0, 0, 0, 1, 0, 0, 0, 5.12042, 0, 0, 0 )
 mesh = SubResource( 1 )
 material/0 = null
 
+[node name="StaticBody" type="StaticBody" parent="Game/GameRoom/World/Floor"]
+
+[node name="CollisionShape" type="CollisionShape" parent="Game/GameRoom/World/Floor/StaticBody"]
+shape = SubResource( 2 )
+
 [node name="SpawnPoint" type="Position3D" parent="Game/GameRoom/World"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.36444, 0 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.68641, 0 )
+
+[node name="Interactable" parent="Game/GameRoom/World" instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.673005, -4.27298 )
+
+[node name="Interactable2" parent="Game/GameRoom/World" instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 5.15599, 0.673005, 6.54715 )
+
+[node name="Interactable3" parent="Game/GameRoom/World" instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -9.69307, 0.673005, 1.6595 )

@@ -1,13 +1,13 @@
 extends Node
 
 
-var network : NetworkedMultiplayerENet = NetworkedMultiplayerENet.new()
+var network: NetworkedMultiplayerENet = NetworkedMultiplayerENet.new()
 
 var my_info
 var my_game
 
-export var gameserver_ip : String = "localhost"
-export var gameserver_port : int = 1909
+export var gameserver_ip: String = "localhost"
+export var gameserver_port: int = 1909
 
 signal game_list_updated
 signal player_joined_game
