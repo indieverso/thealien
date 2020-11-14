@@ -1,8 +1,8 @@
 extends Node
 
 onready var GameRoom := $GameRoom
-onready var World : = $GameRoom/World
-onready var SpawnPoint : = $GameRoom/World/SpawnPoint
+onready var World := $GameRoom/World
+onready var SpawnPoint := $GameRoom/World/SpawnPoint
 
 func _ready() -> void:
 	GameServer.connect("player_joined_game", self, "_on_player_joined_game")
@@ -17,15 +17,10 @@ func _configure_room() -> void:
 
 
 func spawn_player(player_info) -> void:
-	var player : = preload("res://src/Player/Player.tscn").instance()
+	var player := preload("res://src/Player/Player.tscn").instance()
 	player_info.position = SpawnPoint.global_transform
 	player.init(player_info)
 	World.add_child(player)
-	# Adds the player camera
-	if player_info.id == get_tree().get_network_unique_id():
-		var camera : = Camera.new()
-		player.add_child(camera)
-		camera.make_current()
 
 
 func _on_player_joined_game(player_info) -> void:
@@ -35,6 +30,6 @@ func _on_player_joined_game(player_info) -> void:
 
 func _on_player_left_game(player_id: int) -> void:
 	print_debug("Removing " + str(player_id))
-	var player : = World.get_node(str(player_id))	
+	var player := World.get_node(str(player_id))	
 	if player:
 		player.queue_free()

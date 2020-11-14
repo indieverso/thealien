@@ -1,8 +1,8 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://src/Scenes/Game.gd" type="Script" id=1]
-
-[sub_resource type="PlaneMesh" id=1]
+[ext_resource path="res://src/Objects/Interactable.tscn" type="PackedScene" id=2]
+[ext_resource path="res://src/Materials/GridPrototypeLight2.tres" type="Material" id=3]
 
 [node name="Server" type="Node"]
 
@@ -13,10 +13,33 @@ script = ExtResource( 1 )
 
 [node name="World" type="Spatial" parent="Game/GameRoom"]
 
-[node name="Floor" type="MeshInstance" parent="Game/GameRoom/World"]
-transform = Transform( 6.0341, 0, 0, 0, 1, 0, 0, 0, 5.12042, 0, 0, 0 )
-mesh = SubResource( 1 )
-material/0 = null
-
 [node name="SpawnPoint" type="Position3D" parent="Game/GameRoom/World"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.36444, 0 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.68641, -3 )
+
+[node name="Level" type="CSGCombiner" parent="Game/GameRoom/World"]
+use_collision = true
+
+[node name="CSGBox" type="CSGBox" parent="Game/GameRoom/World/Level"]
+width = 40.0
+height = 4.0
+depth = 40.0
+material = ExtResource( 3 )
+
+[node name="CSGBox" type="CSGBox" parent="Game/GameRoom/World/Level/CSGBox"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.18699, 0 )
+operation = 2
+width = 36.0
+depth = 36.0
+material = ExtResource( 3 )
+
+[node name="DirectionalLight" type="DirectionalLight" parent="Game/GameRoom/World"]
+transform = Transform( 0.299927, 0.458568, -0.836516, 0.0754791, 0.86273, 0.5, 0.950971, -0.213103, 0.224144, 0, 20, 0 )
+
+[node name="Interactable" parent="Game/GameRoom/World" instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 11 )
+
+[node name="Interactable2" parent="Game/GameRoom/World" instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 1, -11 )
+
+[node name="Interactable3" parent="Game/GameRoom/World" instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 12, 1, -6 )

@@ -1,9 +1,9 @@
 extends Control
 
 
-onready var username_input : LineEdit = $MarginContainer/VBoxContainer/LoginScreen/UsernameInput
-onready var password_input : LineEdit = $MarginContainer/VBoxContainer/LoginScreen/PasswordInput
-onready var login_button : Button = $MarginContainer/VBoxContainer/LoginScreen/LoginButton
+onready var username_input: LineEdit = $MarginContainer/VBoxContainer/LoginScreen/UsernameInput
+onready var password_input: LineEdit = $MarginContainer/VBoxContainer/LoginScreen/PasswordInput
+onready var login_button: Button = $MarginContainer/VBoxContainer/LoginScreen/LoginButton
 
 
 func _ready() -> void:

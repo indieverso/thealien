@@ -1,7 +1,7 @@
 extends Control
 
 
-onready var server_list : = $MainContainer/VBoxContainer/ServerList/HBoxContainer/VBoxContainer
+onready var server_list := $MainContainer/VBoxContainer/ServerList/HBoxContainer/VBoxContainer
 
 
 func _ready() -> void:
@@ -23,7 +23,7 @@ func _on_game_list_updated(games) -> void:
 	clean_list_games()
 	if games:
 		for game in games:
-			var list_item : = preload("res://src/UI/SeverListItem.tscn").instance()
+			var list_item := preload("res://src/UI/SeverListItem.tscn").instance()
 			list_item.get_node("ServerName").text = game.name
 			list_item.get_node("NumPlayers").text = str(game.num_players) + "/" + str(game.max_players)
 			list_item.get_node("GameMode").text = str(game.mode)
