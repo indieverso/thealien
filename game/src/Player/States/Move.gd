@@ -45,27 +45,17 @@ func physics_process(delta: float) -> void:
 
 func enter(msg: Dictionary = {}) -> void:
 	pass
-#	player.camera.connect("aim_fired", self, "_on_Camera_aim_fired")
 
 
 func exit() -> void:
 	pass
-#	player.camera.disconnect("aim_fired", self, "_on_Camera_aim_fired")
-
-
-# Callback to transition to the optional Zip state
-# It only works if the Zip state node exists.
-# It is intended to work via signals
-func _on_Camera_aim_fired(target_vector: Vector3) -> void:
-	pass
-#	_state_machine.transition_to("Move/Zip", { target = target_vector })
 
 
 static func get_input_direction() -> Vector3:
 	return Vector3(
 			Input.get_action_strength("ui_right") - Input.get_action_strength("ui_left"),
 			0,
-			Input.get_action_strength("ui_back") - Input.get_action_strength("ui_front")
+			Input.get_action_strength("ui_down") - Input.get_action_strength("ui_up")
 		)
 
 

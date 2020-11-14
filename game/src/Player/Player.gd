@@ -13,7 +13,7 @@ puppet var puppet_position : Vector3
 puppet var puppet_velocity : Vector3 = Vector3.ZERO
 
 onready var camera := $CameraGimbal
-onready var skin : Mannequiny = $Model
+onready var skin : Mannequiny = $Mannequiny
 onready var state_machine: StateMachine = $StateMachine
 
 
