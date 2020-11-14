@@ -42,7 +42,7 @@ func _on_peer_disconnected(player_id: int) -> void:
 
 
 func register_player(player_id: int) -> void:
-	var player : = preload("res://src/Actors/Player.tscn").instance()
+	var player := preload("res://src/Actors/Player.tscn").instance()
 	player.name = str(player_id)
 	player.set_network_master(player_id)
 	Lobby.add_child(player)
@@ -50,7 +50,7 @@ func register_player(player_id: int) -> void:
 
 
 func unregister_player(player_id: int) -> void:
-	var player : = Lobby.get_node(str(player_id))
+	var player := Lobby.get_node(str(player_id))
 	if player:
 		player.queue_free()
 		emit_signal("player_unregistred", player_id)
@@ -68,9 +68,9 @@ func _add_player_to_game(player, game) -> void:
 
 remote func create_game(game_name: String) -> void:
 	print("Creating game " + game_name)
-	var player_id : = get_tree().get_rpc_sender_id()
+	var player_id := get_tree().get_rpc_sender_id()
 	
-	var game : = preload("res://src/Game/Game.tscn").instance()
+	var game := preload("res://src/Game/Game.tscn").instance()
 	game.name = game_name
 	game.init(player_id)
 	
@@ -88,7 +88,7 @@ remote func create_game(game_name: String) -> void:
 
 remote func list_games() -> void:
 	print("Listing games")
-	var player_id : = get_tree().get_rpc_sender_id()
+	var player_id := get_tree().get_rpc_sender_id()
 	
 	var game_list = []
 	for game in Games.get_children():
@@ -98,14 +98,14 @@ remote func list_games() -> void:
 
 
 remote func join_game(game_name: String) -> void:
-	var player_id : = get_tree().get_rpc_sender_id()
+	var player_id := get_tree().get_rpc_sender_id()
 	
 	print("Player " + str(player_id) + " joining game " + game_name)
 	
 	var response = ""
 	
-	var game : = Games.get_node(game_name)
-	var player : = Lobby.get_node(str(player_id))
+	var game := Games.get_node(game_name)
+	var player := Lobby.get_node(str(player_id))
 	if game and player:
 		_add_player_to_game(player, game)
 		response = game.serialize()

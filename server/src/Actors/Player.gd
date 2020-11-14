@@ -9,6 +9,7 @@ enum {
 var player_info : = {
 	"id": 0,
 	"name": "???",
+	"color": Color(0, 0, 0)
 }
 
 var current_state : = IDLE
@@ -19,7 +20,7 @@ puppet var puppet_velocity : Vector3 = Vector3.ZERO
 
 
 func _ready() -> void:
-	pass
+	randomize()
 
 func _physics_process(delta: float) -> void:
 	global_transform = puppet_transform
@@ -34,5 +35,6 @@ func serialize():
 	return {
 		"id": int(name),
 		"name": name,
-		"position": global_transform
+		"position": global_transform,
+		"color": player_info.color,
 	}

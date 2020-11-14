@@ -31,8 +31,15 @@ func init(info) -> void:
 
 
 func _ready() -> void:
+	_set_player_color()
 	if player_info.id == get_tree().get_network_unique_id():
 		camera.get_node("InnerGimbal/Camera").current = true
+
+
+func _set_player_color() -> void:
+	var material := SpatialMaterial.new()
+	material.albedo_color = (player_info.color as Color)
+	skin.get_node("MeshInstance").material_override = material
 
 
 #func get_input_direction() -> Vector3:
@@ -60,7 +67,7 @@ func _ready() -> void:
 #
 #
 func _physics_process(delta: float) -> void:
-	if is_network_master():
+	if get_tree().network_peer && is_network_master():
 		rset_unreliable("puppet_transform", transform)
 		rset_unreliable("puppet_velocity", velocity)
 	else:
