@@ -21,26 +21,28 @@ func unhandled_input(event: InputEvent) -> void:
 
 
 func physics_process(delta: float) -> void:
-	var input_direction: = get_input_direction()
-
-	# Calculate a move direction vector relative to the camera
-	# The basis stores the (right, up, -forwards) vectors of our camera.
-	var forwards: Vector3 = player.camera.global_transform.basis.z * input_direction.z
-	var right: Vector3 = player.camera.global_transform.basis.x * input_direction.x
-	var move_direction: = forwards + right
-	if move_direction.length() > 1.0:
-		move_direction = move_direction.normalized()
-	move_direction.y = 0
-	skin.move_direction = move_direction
-
-	# Rotation
-	if move_direction:
-		var target_direction: = player.transform.looking_at(player.global_transform.origin + move_direction, Vector3.UP)
-		player.transform = player.transform.interpolate_with(target_direction, rotation_speed_factor * delta)
-
-	# Movement
-	velocity = calculate_velocity(velocity, move_direction, delta)
-	velocity = player.move_and_slide(velocity, Vector3.UP)
+	if player.is_network_master():
+		var input_direction: = get_input_direction()
+		
+		# Calculate a move direction vector relative to the camera
+		# The basis stores the (right, up, -forwards) vectors of our camera.
+		var forwards: Vector3 = player.camera.global_transform.basis.z * input_direction.z
+		var right: Vector3 = player.camera.global_transform.basis.x * input_direction.x
+		var move_direction: = forwards + right
+		if move_direction.length() > 1.0:
+			move_direction = move_direction.normalized()
+		move_direction.y = 0
+		skin.move_direction = move_direction
+		
+		# Rotation
+	#	if move_direction:
+	#		var target_direction: = player.transform.looking_at(player.global_transform.origin + move_direction, Vector3.UP)
+	#		player.transform = player.transform.interpolate_with(target_direction, rotation_speed_factor * delta)
+		
+		# Movement
+		velocity = calculate_velocity(velocity, move_direction, delta)
+		velocity = player.move_and_slide(velocity, Vector3.UP)
+		player.velocity = velocity
 
 
 func enter(msg: Dictionary = {}) -> void:

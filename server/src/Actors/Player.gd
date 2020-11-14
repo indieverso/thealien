@@ -14,7 +14,7 @@ var player_info : = {
 var current_state : = IDLE
 var velocity : Vector3 = Vector3.ZERO
 
-puppet var puppet_position : Vector3
+puppet var puppet_transform : Transform
 puppet var puppet_velocity : Vector3 = Vector3.ZERO
 
 
@@ -22,15 +22,17 @@ func _ready() -> void:
 	pass
 
 func _physics_process(delta: float) -> void:
-	global_transform.origin = puppet_position
+	global_transform = puppet_transform
 	velocity = puppet_velocity
 	
 	velocity = move_and_slide(velocity)
-	puppet_position = global_transform.origin
+	puppet_transform = global_transform
+	puppet_velocity = velocity
 
 
 func serialize():
 	return {
 		"id": int(name),
 		"name": name,
+		"position": global_transform
 	}

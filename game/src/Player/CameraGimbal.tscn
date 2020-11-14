@@ -7,4 +7,3 @@ transform = Transform( 1, 0, 0, 0, 0.795643, 0.605766, 0, -0.605766, 0.795643, 0
 
 [node name="Camera" type="Camera" parent="InnerGimbal"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 4 )
-current = true
