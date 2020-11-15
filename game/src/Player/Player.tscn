@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://src/Player/Player.gd" type="Script" id=1]
 [ext_resource path="res://src/Player/CameraGimbal.tscn" type="PackedScene" id=2]
@@ -7,8 +7,13 @@
 [ext_resource path="res://src/Player/States/Run.gd" type="Script" id=5]
 [ext_resource path="res://src/Player/States/Move.gd" type="Script" id=6]
 [ext_resource path="res://src/Player/Mannequiny.tscn" type="PackedScene" id=7]
+[ext_resource path="res://src/Player/PlayerLabel.tscn" type="PackedScene" id=8]
 
 [sub_resource type="CapsuleShape" id=1]
+
+[sub_resource type="ViewportTexture" id=2]
+flags = 4
+viewport_path = NodePath("Viewport")
 
 [node name="Player" type="KinematicBody"]
 collision_layer = 2
@@ -35,3 +40,24 @@ script = ExtResource( 4 )
 script = ExtResource( 5 )
 
 [node name="CameraGimbal" parent="." instance=ExtResource( 2 )]
+
+[node name="Camera" parent="CameraGimbal/InnerGimbal" index="0"]
+fov = 40.0
+
+[node name="ViewportSprite" type="Sprite3D" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.159032, 0 )
+billboard = 1
+double_sided = false
+texture = SubResource( 2 )
+
+[node name="Viewport" type="Viewport" parent="."]
+size = Vector2( 200, 200 )
+transparent_bg = true
+handle_input_locally = false
+disable_3d = true
+render_target_v_flip = true
+gui_snap_controls_to_pixels = false
+
+[node name="PlayerLabel" parent="Viewport" instance=ExtResource( 8 )]
+
+[editable path="CameraGimbal"]

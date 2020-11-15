@@ -6,4 +6,4 @@
 transform = Transform( 1, 0, 0, 0, 0.795643, 0.605766, 0, -0.605766, 0.795643, 0, 0, 0 )
 
 [node name="Camera" type="Camera" parent="InnerGimbal"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 4 )
+transform = Transform( 1, 0, 0, 0, 1, 2.98023e-08, 0, -2.98023e-08, 1, 0, 0, 8 )

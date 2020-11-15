@@ -28,6 +28,7 @@ func init(info) -> void:
 	name = str(player_info.id)
 	global_transform = player_info.position
 	set_network_master(player_info.id)
+	$Viewport/PlayerLabel/Label.text = name
 
 
 func _ready() -> void:
