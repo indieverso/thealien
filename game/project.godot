@@ -9,7 +9,7 @@
 config_version=4
 
 _global_script_classes=[ {
-"base": "Spatial",
+"base": "StaticBody",
 "class": "Interactable",
 "language": "GDScript",
 "path": "res://src/Objects/Interactable.gd"
@@ -121,10 +121,10 @@ use_skill={
 
 [layer_names]
 
-2d_physics/layer_1="world"
-2d_physics/layer_2="player"
-2d_physics/layer_3="interactable"
-2d_physics/layer_4="collectable"
+3d_physics/layer_1="world"
+3d_physics/layer_2="player"
+3d_physics/layer_3="interactable"
+3d_physics/layer_4="collectable"
 
 [rendering]
 

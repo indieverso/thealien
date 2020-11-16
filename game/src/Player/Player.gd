@@ -43,30 +43,6 @@ func _set_player_color() -> void:
 	skin.get_node("MeshInstance").material_override = material
 
 
-#func get_input_direction() -> Vector3:
-#	var h_mov : = Input.get_action_strength("ui_right") - Input.get_action_strength("ui_left")
-#	var v_mov : = Input.get_action_strength("ui_down") - Input.get_action_strength("ui_up")
-#	return Vector3(h_mov, 0, v_mov).normalized()
-#
-#
-#func _input(event: InputEvent) -> void:
-#	if event.is_action_pressed("interact"):
-#		interactable_area.handle_interact()
-#		return
-#
-#	if event.is_action_pressed("kill"):
-#		killable_area.handle_kill()
-#		return
-#
-#	if event.is_action_pressed("toggle_tasks"):
-#		print("Toggle tasks")
-#		return
-#
-#	if event.is_action_pressed("use_skill"):
-#		print("Use still")
-#		return
-#
-#
 func _physics_process(delta: float) -> void:
 	if get_tree().network_peer && is_network_master():
 		rset_unreliable("puppet_transform", transform)
