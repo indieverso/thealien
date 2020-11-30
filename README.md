@@ -1,7 +1,5 @@
 <p align="center">
-  <a href="http://www.sumelms.com">
-    <img src=".github/logo.svg" height="80"/>
-  </a>
+  <img src=".github/logo.svg" height="80"/>
 </p>
 
 <p align="center">
